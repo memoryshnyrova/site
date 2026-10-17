@@ -1,0 +1,865 @@
+<meta charset="utf-8">
+<title>Ольга Шнырова</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&family=Golos+Text:wght@400;500;600&display=swap">
+<style>
+/* Layout: a memorial long-read on deep violet. Dark-first: the site is always dark unless a viewer explicitly asks for light. */
+:root{
+  --paper:#1A1221; --card:#23182C; --ink:#F2ECF6; --muted:#B1A4BC; --rule:#3A2C46;
+  --violet:#D5B8EA; --violet-2:#BE97DC; --violet-soft:#2F2239;
+  --green:#90D4A9; --green-soft:#193026;
+  --red:#EF968A;
+  --band:#40205A; --band-ink:#F7F1FB;
+  --sash-w:#EDE6F2; --land:#2C2036; --land-line:#1A1221; --shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4);
+  --f-display:"Old Standard TT","Times New Roman",Georgia,serif;
+  --f-body:"Literata",Georgia,"Times New Roman",serif;
+  --f-ui:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --measure:66ch;
+  color-scheme:dark;
+}
+:root[data-theme="light"]{
+  --paper:#F6F4F8; --card:#FFFFFF; --ink:#1D1823; --muted:#615868; --rule:#DDD5E4;
+  --violet:#4B2563; --violet-2:#6E3E8C; --violet-soft:#ECE4F2;
+  --green:#1E6A46; --green-soft:#DFEFE5; --red:#A32A2C;
+  --band:#4B2563; --band-ink:#FFFFFF;
+  --sash-w:#FBFAFC; --land:#E7E1EC; --land-line:#F6F4F8; --shadow:0 1px 2px rgba(40,20,60,.06),0 8px 28px rgba(40,20,60,.08); color-scheme:light }
+
+*{box-sizing:border-box}
+html,body{overflow-x:clip;max-width:100%}
+body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+[id]{scroll-margin-top:76px}
+.pv-bio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:0 64px;align-items:start}
+.pv-eyebrow{grid-column:1/-1;margin-bottom:10px}
+.pv-bio h2{font-size:clamp(34px,4.6vw,56px);margin:0 0 12px}
+.pv-bio .byline{font-family:var(--f-ui);font-size:14px;color:var(--muted)}
+.pv-lead{font-size:19px;line-height:1.6;margin:0 0 24px;padding-top:3px}
+@media (max-width:860px){ .pv-bio{grid-template-columns:1fr;row-gap:20px} .pv-eyebrow{margin-bottom:-10px} }
+.more-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.more-links .btn{text-decoration:none}
+a.btn{text-decoration:none}
+.pager-sec{padding-block:56px}
+.pager-sec + .section{border-top:0;padding-top:0}
+.pager{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
+.pager a{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:18px 20px;transition:border-color .2s}
+.pager a:hover{border-color:var(--violet-2)}
+.pager b{display:block;font-family:var(--f-display);font-weight:400;font-size:24px}
+.pager span{font-family:var(--f-ui);font-size:13px;color:var(--muted)}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *,*::before,*::after{animation:none!important;transition:none!important} }
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+html[lang="ru"] .en, html[lang="en"] .ru{display:none!important}
+a{color:var(--green);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--violet)}
+:focus-visible{outline:2px solid var(--violet-2);outline-offset:3px;border-radius:4px}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.1;text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--f-ui);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--violet)}
+.section{padding-block:clamp(64px,9vw,120px);border-top:1px solid var(--rule)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px 64px;align-items:last baseline;margin-bottom:48px}
+.sec-head h2{font-size:clamp(40px,5.4vw,68px)}
+.sec-head p{margin:0;color:var(--muted);max-width:56ch;font-size:17px}
+@media (max-width:760px){ .sec-head{grid-template-columns:1fr} }
+.ui{font-family:var(--f-ui)}
+.btn{font-family:var(--f-ui);font-size:14px;font-weight:500;border:1px solid var(--rule);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;line-height:1.2}
+.btn:hover{border-color:var(--violet-2);color:var(--violet)}
+.btn.primary{background:var(--violet);border-color:var(--violet);color:var(--paper)}
+.btn.primary:hover{background:var(--violet-2);color:var(--paper)}
+
+/* reveal on scroll (content is visible without support) */
+@supports (animation-timeline: view()){
+  .reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
+}
+@keyframes rise{from{transform:translateY(36px)}to{transform:none}}
+
+/* ---------- header ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.brand{font-family:var(--f-display);font-size:20px;color:var(--ink);text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:10px}
+.nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-family:var(--f-ui);font-size:14px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:6px;white-space:nowrap}
+.nav a:hover,.nav a[aria-current="true"]{color:var(--violet);background:var(--violet-soft)}
+.totop{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:8;width:44px;height:44px;border-radius:50%;border:1px solid var(--rule);background:var(--card);color:var(--violet);font-size:18px;cursor:pointer;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .3s}
+.totop.show{opacity:1;pointer-events:auto}
+.lang{display:flex;border:1px solid var(--rule);border-radius:999px;padding:2px;flex:none}
+.lang button{font-family:var(--f-ui);font-size:13px;font-weight:600;border:0;background:transparent;color:var(--muted);padding:5px 11px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--violet);color:var(--paper)}
+@media (max-width:640px){ .brand{display:none} .nav a{padding:6px 8px} .nav{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent);padding-inline:8px 24px} }
+
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(28px,4.5vw,64px) clamp(40px,6vw,72px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:center}
+@media (max-width:860px){ .hero-grid{grid-template-columns:1fr} .portrait{max-width:min(440px,100%)} }
+.dates{font-family:var(--f-ui);font-size:14px;letter-spacing:.08em;color:var(--muted);font-variant-numeric:tabular-nums;display:flex;gap:12px;align-items:center}
+.dates b{width:40px;height:1px;background:var(--muted);display:inline-block}
+.hero h1{font-size:clamp(52px,8.6vw,128px);letter-spacing:-.02em;margin:18px 0 6px;line-height:.95}
+.hero h1 em{font-style:italic;color:var(--violet);display:block}
+.hero h1{margin-bottom:28px!important}
+.hero .full{font-family:var(--f-display);font-size:clamp(20px,2.2vw,26px);font-style:italic;color:var(--muted);margin:0 0 28px}
+.hero .lead{font-size:clamp(18px,1.6vw,21px);max-width:38ch;margin:0 0 32px}
+.epigraph{border-left:2px solid var(--green);padding:4px 0 4px 18px;margin:0;max-width:40ch}
+.epigraph q{font-family:var(--f-display);font-size:22px;font-style:italic;quotes:none}
+.epigraph span{display:block;font-family:var(--f-ui);font-size:13px;color:var(--muted);margin-top:4px}
+.portrait{position:relative;justify-self:center;width:100%;max-width:min(100%,calc((100svh - 170px) * .6667));margin:0;animation:fadein 1.4s ease-out both}
+.portrait .frame{position:relative;overflow:hidden;border-radius:2px;box-shadow:var(--shadow);aspect-ratio:2/3;max-width:100%}
+.portrait img{width:100%;height:100%;object-fit:cover;filter:saturate(.92)}
+.sash{position:absolute;left:-14%;right:-14%;bottom:15%;height:54px;transform:rotate(-14deg);background:linear-gradient(var(--violet) 0 33.3%,var(--sash-w) 33.3% 66.6%,var(--green) 66.6%);box-shadow:0 6px 18px rgba(30,10,40,.25);transform-origin:left center;animation:sash 1.3s .5s cubic-bezier(.2,.7,.2,1) both}
+.portrait figcaption{font-family:var(--f-ui);font-size:12px;color:var(--muted);margin-top:10px}
+@keyframes fadein{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:none}}
+@keyframes sash{from{transform:rotate(-14deg) scaleX(0)}to{transform:rotate(-14deg) scaleX(1)}}
+.hero-text > *{animation:fadeup .9s ease-out both}
+.hero-text > *:nth-child(2){animation-delay:.12s}.hero-text > *:nth-child(3){animation-delay:.22s}.hero-text > *:nth-child(4){animation-delay:.32s}.hero-text > *:nth-child(5){animation-delay:.42s}
+@keyframes fadeup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-top:clamp(48px,7vw,80px)}
+.stat{padding:22px 20px;border-left:1px solid var(--rule)}
+.stat:first-child{border-left:0;padding-left:0}
+.stat b{display:block;font-family:var(--f-display);font-size:clamp(36px,4.6vw,56px);font-weight:400;color:var(--violet);line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-family:var(--f-ui);font-size:14px;color:var(--muted);display:block;margin-top:8px}
+@media (max-width:700px){ .stats{grid-template-columns:repeat(2,minmax(0,1fr))} .stat:nth-child(3){border-left:0;padding-left:0} .stat:nth-child(n+3){border-top:1px solid var(--rule)} }
+
+/* ---------- timeline ---------- */
+.tl{position:relative;display:grid;gap:0}
+.tl::before,.tl::after{content:"";position:absolute;left:calc(8.5rem + 7px);top:8px;bottom:8px;width:2px;background:var(--rule)}
+.tl::after{background:linear-gradient(var(--violet),var(--green));transform-origin:top}
+@supports (animation-timeline: view()){ .tl::after{animation:grow linear both;animation-timeline:view();animation-range:entry 10% exit 70%} }
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.ev{display:grid;grid-template-columns:8.5rem 16px minmax(0,1fr);gap:0 28px;padding-block:18px}
+.ev .yr{font-family:var(--f-display);font-size:30px;line-height:1.1;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.ev .dot{width:16px;height:16px;border-radius:50%;background:var(--paper);border:2px solid var(--violet);margin-top:9px;position:relative;z-index:1}
+.ev.key .dot{background:var(--violet)}
+.ev.last .dot{background:var(--paper);border-color:var(--muted)}
+.ev .body{max-width:62ch}
+.ev h3{font-size:24px;margin-bottom:6px}
+.ev p{margin:0;color:var(--muted)}
+.ev figure{margin:14px 0 0;max-width:380px}
+.ev figure img{border-radius:2px;box-shadow:var(--shadow);cursor:zoom-in}
+.ev figure.mini{max-width:170px}
+.ev figure.mini .cover img{box-shadow:none;border-radius:0}
+.ev figcaption{font-family:var(--f-ui);font-size:12px;color:var(--muted);margin-top:6px}
+.students{margin-top:12px;border:1px solid var(--rule);border-radius:10px;background:var(--card);padding:6px 18px}
+.students summary{font-family:var(--f-ui);font-size:14px;font-weight:500;cursor:pointer;padding:10px 0;color:var(--violet)}
+.students ol{margin:0 0 12px;padding-left:20px;display:grid;gap:8px;font-size:15px}
+.students li span{color:var(--muted);font-family:var(--f-ui);font-size:13px}
+@media (max-width:640px){
+  .tl::before,.tl::after{left:7px}
+  .ev{grid-template-columns:16px minmax(0,1fr);gap:4px 18px}
+  .ev .yr{grid-column:2;text-align:left;font-size:24px}
+  .ev .dot{grid-row:1;grid-column:1;margin-top:6px}
+  .ev .body{grid-column:2}
+}
+
+/* ---------- biography reader ---------- */
+.bio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,var(--measure)) minmax(0,1fr);gap:0 40px}
+.bio .col{grid-column:2}
+.bio .byline{font-family:var(--f-ui);font-size:14px;color:var(--muted);margin-bottom:28px}
+.bio h2{font-size:clamp(34px,4.6vw,56px);margin-bottom:12px}
+.bio p{margin:0 0 1.1em;font-size:18px}
+#bio-text > p:first-child{font-size:21px;line-height:1.55}
+.bio .more{position:relative;max-height:30em;overflow:hidden}
+.bio .more::after{content:"";position:absolute;inset:auto 0 0;height:10em;background:linear-gradient(transparent,var(--paper))}
+.bio.open .more{max-height:none}
+.bio.open .more::after{display:none}
+.pull{font-family:var(--f-display);font-style:italic;font-size:clamp(24px,2.6vw,32px);line-height:1.25;color:var(--violet);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:22px 0;margin:28px 0}
+.bio aside{grid-column:3;align-self:start;position:sticky;top:90px;font-family:var(--f-ui);font-size:13px;color:var(--muted)}
+@media (max-width:1100px){ .bio{grid-template-columns:1fr} .bio .col,.bio aside{grid-column:1} .bio aside{position:static;margin-top:12px} }
+
+/* ---------- filmstrip ---------- */
+.strip{padding-block:28px 40px;border-top:1px solid var(--rule)}
+.strip .rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x proximity;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px));padding-bottom:12px;scrollbar-width:thin}
+.strip figure{margin:0;flex:none;scroll-snap-align:start}
+.strip button{all:unset;cursor:zoom-in;display:block}
+.strip button:focus-visible{outline:2px solid var(--violet-2);outline-offset:3px}
+.strip img{height:clamp(200px,28vw,300px);width:auto;border-radius:2px;transition:filter .3s;filter:saturate(.9);background:var(--violet-soft)}
+.strip figure:hover img{filter:saturate(1.05)}
+.strip figcaption{font-family:var(--f-ui);font-size:12px;color:var(--muted);margin-top:8px;max-width:30ch;min-height:1.3em}
+.strip .hint{font-family:var(--f-ui);font-size:13px;color:var(--muted);margin:0 0 14px}
+
+/* ---------- map ---------- */
+.map-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:32px;align-items:start}
+@media (max-width:900px){ .map-grid{grid-template-columns:1fr} }
+.map-box{position:relative;background:var(--card);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+#map svg{display:block;width:100%;height:auto}
+.country{fill:var(--land);stroke:var(--land-line);stroke-width:.6}
+.arc{fill:none;stroke:var(--violet-2);stroke-width:1.2;stroke-opacity:.55}
+.arc.k-science{stroke:var(--green)}
+.arc.k-meet{stroke:var(--red);stroke-opacity:.45}
+.pt{cursor:pointer}
+.pt circle.core{stroke:var(--card);stroke-width:1.5}
+.pt.k-school circle.core{fill:var(--violet)} .pt.k-science circle.core{fill:var(--green)} .pt.k-meet circle.core{fill:var(--red)}
+.pt circle.halo{fill:none;stroke-width:1.5;opacity:0}
+.pt.k-school circle.halo{stroke:var(--violet)} .pt.k-science circle.halo{stroke:var(--green)} .pt.k-meet circle.halo{stroke:var(--red)}
+.pt.on circle.halo{opacity:1;animation:pulse 1.6s ease-out infinite}
+@keyframes pulse{from{r:6;opacity:.9}to{r:20;opacity:0}}
+.pt text{font-family:var(--f-ui);font-size:13px;fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round;pointer-events:none;opacity:0;transition:opacity .2s}
+.pt.on text,.pt.home text{opacity:1}
+.home circle.core{fill:var(--ink)!important}
+.side{display:grid;gap:24px;min-width:0}
+.map-card{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow);font-family:var(--f-ui);font-size:14px}
+.map-card b{font-family:var(--f-display);font-weight:400;font-size:22px;display:block;margin-bottom:2px}
+.map-card .when{color:var(--violet);font-weight:600;font-size:13px}
+.map-card p{margin:6px 0 0;color:var(--muted);line-height:1.45}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.chip{font-family:var(--f-ui);font-size:13px;border:1px solid var(--rule);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.chip i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.chip[aria-pressed="false"]{opacity:.45}
+.places{display:grid;gap:22px}
+.places h3{font-family:var(--f-ui);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.places ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.places button{font-family:var(--f-ui);font-size:14px;border:0;background:var(--violet-soft);color:var(--ink);padding:5px 11px;border-radius:6px;cursor:pointer}
+.places .g-science button{background:var(--green-soft)}
+.places .g-meet button{background:color-mix(in srgb,var(--red) 14%,var(--card))}
+.places button.on{outline:2px solid var(--violet-2)}
+.map-note{font-family:var(--f-ui);font-size:13px;color:var(--muted);margin-top:14px}
+
+/* ---------- memoirs ---------- */
+.mem-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:24px;align-items:stretch}
+.mem{margin:0;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px;transition:border-color .25s,transform .25s}
+.mem:hover{border-color:var(--violet-2);transform:translateY(-2px)}
+.mem .met{font-family:var(--f-ui);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);font-weight:600}
+.mem blockquote{margin:0;font-family:var(--f-display);font-size:24px;line-height:1.28;font-style:italic}
+.mem blockquote::before{content:"«";color:var(--violet-2)}
+.mem blockquote::after{content:"»";color:var(--violet-2)}
+html[lang="en"] .mem blockquote::before{content:"“"} html[lang="en"] .mem blockquote::after{content:"”"}
+.mem .who{margin-top:auto;display:flex;justify-content:space-between;align-items:end;gap:12px;border-top:1px solid var(--rule);padding-top:12px}
+.mem .who b{font-family:var(--f-ui);font-weight:600;font-size:15px;line-height:1.3;display:block}
+.mem .who small{font-family:var(--f-ui);font-size:13px;line-height:1.35;color:var(--muted);display:block;margin-top:3px}
+.mem .btn{flex:none;padding:6px 12px;font-size:13px}
+
+dialog{border:0;padding:0;background:transparent;max-width:min(760px,calc(100vw - 24px));width:100%;max-height:calc(100dvh - 24px)}
+dialog::backdrop{background:rgba(20,10,28,.55);backdrop-filter:blur(3px)}
+.reader{background:var(--paper);color:var(--ink);border-radius:14px;max-height:calc(100dvh - 24px);overflow:auto;padding:clamp(24px,5vw,56px)}
+.reader .x{position:sticky;top:0;float:right;margin:-8px -8px 0 0}
+.reader h3{font-size:clamp(30px,4vw,44px);margin:6px 0 4px}
+.reader .role{font-family:var(--f-ui);color:var(--muted);font-size:14px;margin-bottom:24px}
+.reader p{font-size:18px;margin:0 0 1em}
+.reader nav{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--rule);padding-top:20px;margin-top:28px}
+.lightbox{max-width:min(1100px,calc(100vw - 24px))}
+.lightbox .reader{padding:16px;background:var(--card)}
+.lightbox img{height:min(74dvh,820px);width:100%;object-fit:contain;margin:0 auto}
+.lightbox p{font-family:var(--f-ui);font-size:14px;color:var(--muted);margin:10px 4px 0;display:flex;justify-content:space-between;gap:12px;align-items:center}
+
+/* ---------- works ---------- */
+.shelf{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-bottom:56px}
+@media (max-width:760px){ .shelf{grid-template-columns:1fr 1fr} }
+@media (max-width:480px){ .shelf{grid-template-columns:1fr} }
+.book{display:flex;flex-direction:column;gap:12px}
+.cover{aspect-ratio:2/3;border-radius:2px 6px 6px 2px;box-shadow:var(--shadow),inset 6px 0 0 rgba(0,0,0,.12);overflow:hidden;position:relative;transition:transform .35s}
+.book:hover .cover{transform:translateY(-4px) rotate(-.6deg)}
+.cover img{width:100%;height:100%;object-fit:cover}
+.cover.type{padding:22px 20px;display:flex;flex-direction:column;justify-content:space-between;color:#F6F1F8}
+.cover.type.v{background:#3E1F52}
+.cover.type.g{background:#1B4D36}
+.cover.type .a{font-family:var(--f-ui);font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.cover.type .t{font-family:var(--f-display);font-size:clamp(22px,2.4vw,30px);line-height:1.1}
+.cover.type .p{font-family:var(--f-ui);font-size:12px;opacity:.8}
+.cover.type .stamp{position:absolute;top:12px;right:-30px;transform:rotate(35deg);background:rgba(255,255,255,.14);font-family:var(--f-ui);font-size:10px;letter-spacing:.08em;padding:3px 34px;text-transform:uppercase}
+.book h3{font-size:21px;line-height:1.2}
+.book p{margin:0;font-family:var(--f-ui);font-size:14px;color:var(--muted)}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;margin-bottom:64px}
+.feat a{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:18px 20px;transition:border-color .2s}
+.feat a:hover{border-color:var(--green)}
+.feat .y{font-family:var(--f-ui);font-size:13px;color:var(--green);font-weight:600}
+.feat .t{font-family:var(--f-display);font-size:20px;line-height:1.25;margin:4px 0 6px}
+.feat .s{font-family:var(--f-ui);font-size:13px;color:var(--muted);line-height:1.4}
+
+.filters{display:grid;gap:14px;margin-bottom:8px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 60px);background:var(--paper);padding:14px 0;z-index:5;border-bottom:1px solid var(--rule)}
+.frow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fbtn{font-family:var(--f-ui);font-size:13px;border:1px solid var(--rule);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.fbtn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.search{flex:1 1 240px;min-width:0;font-family:var(--f-ui);font-size:15px;border:1px solid var(--rule);background:var(--card);color:var(--ink);border-radius:999px;padding:9px 16px}
+.check{font-family:var(--f-ui);font-size:13px;display:inline-flex;gap:6px;align-items:center;color:var(--muted)}
+.count{font-family:var(--f-ui);font-size:13px;color:var(--muted);margin-left:auto}
+.dec{border-top:1px solid var(--rule)}
+.dec:last-child{border-bottom:1px solid var(--rule)}
+.dec summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:18px;padding:20px 0}
+.dec summary::-webkit-details-marker{display:none}
+.dec summary h3{font-size:30px;color:var(--violet)}
+.dec summary span{font-family:var(--f-ui);font-size:14px;color:var(--muted)}
+.dec summary::after{content:"+";margin-left:auto;font-family:var(--f-ui);font-size:26px;line-height:1;color:var(--violet)}
+.dec[open] summary::after{content:"−"}
+.dec .items{padding-bottom:16px}
+.items{list-style:none;margin:0;padding:0;display:grid}
+.it{display:grid;grid-template-columns:3.4rem minmax(0,1fr) auto;gap:4px 18px;padding:14px 0;border-bottom:1px dashed var(--rule)}
+.it:last-child{border-bottom:0}
+.it .y{font-family:var(--f-ui);font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:3px}
+.it .au{font-family:var(--f-ui);font-size:13px;font-weight:600;color:var(--muted)}
+.it .ti{font-size:17px;line-height:1.4;margin:2px 0}
+.it .ti a{color:var(--ink);text-decoration-color:var(--green)}
+.it .ti a:hover{color:var(--green)}
+.it .tr{font-size:15px;font-style:italic;color:var(--muted);margin:-2px 0 4px}
+.it .so{font-family:var(--f-ui);font-size:13px;color:var(--muted);line-height:1.45}
+.it .nt{font-family:var(--f-ui);font-size:12px;color:var(--muted);font-style:italic;margin-top:2px}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.badge{font-family:var(--f-ui);font-size:11px;font-weight:600;letter-spacing:.04em;padding:2px 8px;border-radius:4px;background:var(--green-soft);color:var(--green)}
+.badge.l{background:var(--violet-soft);color:var(--violet)}
+.cite{align-self:start;font-family:var(--f-ui);font-size:12px;border:1px solid var(--rule);background:transparent;color:var(--muted);border-radius:6px;padding:5px 9px;cursor:pointer;white-space:nowrap}
+.cite:hover{color:var(--violet);border-color:var(--violet-2)}
+.cite.ok{color:var(--green);border-color:var(--green)}
+@media (max-width:560px){ .it{grid-template-columns:minmax(0,1fr)} .it .y{padding:0} .cite{justify-self:start} }
+.empty{font-family:var(--f-ui);color:var(--muted);padding:28px 0}
+
+/* ---------- voice ---------- */
+.voice{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:48px;align-items:start}
+@media (max-width:900px){ .voice{grid-template-columns:1fr} }
+.voice figure{margin:0}
+.voice figure img{border-radius:2px;box-shadow:var(--shadow);width:100%;height:auto}
+.voice figcaption{font-family:var(--f-ui);font-size:12px;color:var(--muted);margin-top:8px}
+.vlist{list-style:none;margin:0 0 36px;padding:0}
+.vlist li{border-top:1px solid var(--rule);padding:12px 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px}
+.vlist a{font-size:17px;line-height:1.35;color:var(--ink);text-decoration:none}
+.vlist a:hover{color:var(--green)}
+.vlist small.tr{font-style:italic;font-family:var(--f-body);font-size:14px}
+.vlist small{font-family:var(--f-ui);font-size:13px;color:var(--muted);grid-column:1}
+.vlist .kind{font-family:var(--f-ui);font-size:12px;color:var(--violet);grid-row:1/4;grid-column:2;align-self:center}
+.sub{font-family:var(--f-ui);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+
+/* ---------- share ---------- */
+.share{background:var(--band);color:var(--band-ink);border-radius:18px;padding:clamp(28px,6vw,72px);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:center;position:relative;overflow:hidden}
+@media (max-width:800px){ .share{grid-template-columns:1fr} }
+.share h2{font-size:clamp(34px,5vw,60px);color:var(--band-ink)}
+.share p{margin:14px 0 0;max-width:52ch;opacity:.92}
+.mailbox{background:var(--paper);color:var(--ink);border-radius:12px;padding:20px;font-family:var(--f-ui);position:relative;z-index:1}
+.mailbox .mail{display:block;font-family:var(--f-ui);font-size:clamp(17px,2vw,21px);font-weight:600;word-break:break-all;margin:6px 0 4px;color:var(--violet);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.mailbox .mail:hover{color:var(--green)}
+.mailbox small{display:block;color:var(--muted);font-size:12px;margin-top:10px}
+
+footer{padding-block:48px 64px;font-family:var(--f-ui);font-size:13px;color:var(--muted)}
+footer .wrap{display:grid;gap:10px}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="ru">Ольга Шнырова</span><span class="en">Olga Shnyrova</span></a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#life"><span class="ru">Жизнь</span><span class="en">Life</span></a>
+      <a href="#bio"><span class="ru">Биография</span><span class="en">Biography</span></a>
+      <a href="#map"><span class="ru">Карта</span><span class="en">Map</span></a>
+      <a href="#memories"><span class="ru">Воспоминания</span><span class="en">Memories</span></a>
+      <a href="#works"><span class="ru">Труды</span><span class="en">Works</span></a>
+      <a href="#voice"><span class="ru">Интервью</span><span class="en">Interviews</span></a>
+      <a href="#share"><span class="ru">Написать</span><span class="en">Contribute</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Язык / Language">
+      <button id="lang-ru" type="button" aria-pressed="true">RU</button>
+      <button id="lang-en" type="button" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<div data-page="home">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="dates">28.10.1957 <b aria-hidden="true"></b> 06.11.2025</div>
+        <h1><span class="ru">Ольга <em>Шнырова</em></span><span class="en">Olga <em>Shnyrova</em></span></h1>
+        <p class="lead"><span class="ru">Историк, исследовательница суфражизма и женского движения, основательница и директорка Ивановского Центра Гендерных Исследований. Учительница для сотен людей в разных странах.</span><span class="en">Historian of suffragism and the women's movement, founder and director of the Ivanovo Center for Gender Studies. A teacher to hundreds of people in many countries.</span></p>
+        <blockquote class="epigraph"><q>Non omnis moriar</q><span class="ru">«Я не умру весь». Гораций. Эпиграф к тексту Натальи Гафизовой</span><span class="en">“I shall not wholly die.” Horace. Epigraph to Natalia Gafizova's text</span></blockquote>
+      </div>
+      <figure class="portrait">
+        <div class="frame"><img src="img/portrait.jpg" alt="Портрет Ольги Шныровой" width="933" height="1400"></div>
+      </figure>
+    </div>
+    <div class="stats" id="stats">
+      <div class="stat"><b data-count="90" data-suffix="+">90+</b><span class="ru">научных работ</span><span class="en">academic works</span></div>
+      <div class="stat"><b data-count="14">14</b><span class="ru">международных летних школ</span><span class="en">international summer schools</span></div>
+      <div class="stat"><b data-count="1996">1996</b><span class="ru">создан Ивановский Центр Гендерных Исследований</span><span class="en">Center for Gender Studies founded</span></div>
+      <div class="stat"><b data-count="31">31</b><span class="ru">год преподавания в ИвГУ</span><span class="en">years teaching at Ivanovo State University</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="life">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow"><span class="ru">Вехи</span><span class="en">Milestones</span></div><h2><span class="ru">Жизнь</span><span class="en">Life</span></h2></div>
+      <p><span class="ru">От Иванова до Понте-де-Лимы: университет, центр, книги, школы и люди, которых она собирала вместе.</span><span class="en">From Ivanovo to Ponte de Lima: the university, the Center, the books, the schools and the people she brought together.</span></p>
+    </div>
+    <div class="tl" id="timeline"></div>
+  </div>
+</section>
+
+
+
+<section class="section" id="bio-preview">
+  <div class="wrap">
+    <div class="pv-bio reveal">
+      <div class="eyebrow pv-eyebrow"><span class="ru">Биография</span><span class="en">Biography</span></div>
+      <div><h2><span class="ru">Учитель, который учит видеть историю в людях</span><span class="en">A teacher who taught us to see history in people</span></h2>
+        <div class="byline"><span class="ru">Текст: Наталья Гафизова, коллежанка и ученица</span><span class="en">By Natalia Gafizova, colleague and former student</span></div></div>
+      <div><p class="pv-lead" id="bio-lead"></p>
+        <a class="btn primary" href="#bio"><span class="ru">Читать биографию · 9 минут</span><span class="en">Read the biography · 9 min</span> →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="strip" aria-label="Фотографии">
+  <div class="wrap"><p class="hint"><span class="ru">Фотографии. Листайте вбок, нажмите, чтобы увеличить</span><span class="en">Photographs. Scroll sideways, tap to enlarge</span></p></div>
+  <div class="rail" id="rail"></div>
+</section>
+
+<section class="section" id="map">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow"><span class="ru">Сеть</span><span class="en">Network</span></div><h2><span class="ru">Карта школ и встреч</span><span class="en">Schools and meetings</span></h2></div>
+      <p><span class="ru">Карта построена на основе биографии и воспоминаний коллег. Нажмите на точку или название, чтобы узнать, что там происходило.</span><span class="en">Built from the biography and colleagues' memories. Tap a point or a name to see what happened there.</span></p>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="map-grid">
+      <div class="map-box"><div id="map-svg" role="img" aria-label="Карта мест, связанных с Ольгой Шныровой"></div></div>
+      <div class="side"><div class="map-card" id="map-card" aria-live="polite"></div><div class="places" id="places"></div></div>
+    </div>
+    <p class="map-note"><span class="ru">За пределами карты: Нортгемптон, США (Смит-колледж, 2004) и Хэмлайн, США (конференция проекта Aftermaths of War).</span><span class="en">Beyond the map: Northampton, USA (Smith College, 2004) and Hamline, USA (an Aftermaths of War conference).</span></p>
+  </div>
+</section>
+
+<section class="section" id="mem-preview-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow"><span class="ru">17 голосов</span><span class="en">17 voices</span></div><h2><span class="ru">Воспоминания</span><span class="en">Memories</span></h2></div>
+      <p><span class="ru">Коллеги, ученицы, соратницы и друзья из разных стран.</span><span class="en">Colleagues, students, allies and friends from many countries.</span></p>
+    </div>
+    <div class="mem-grid three" id="mem-preview"></div>
+    <div class="more-links"><a class="btn primary" href="#memories"><span class="ru">Все 17 воспоминаний</span><span class="en">All 17 memories</span> →</a></div>
+  </div>
+</section>
+
+<section class="section" id="works-preview">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow"><span class="ru">Библиография</span><span class="en">Bibliography</span></div><h2><span class="ru">Труды</span><span class="en">Works</span></h2></div>
+      <p><span class="ru">Книги, статьи, переводы, интервью и лекции. Полный список с поиском и фильтрами на отдельной странице.</span><span class="en">Books, articles, translations, interviews and lectures. The full searchable list is on its own page.</span></p>
+    </div>
+    <div class="shelf" id="shelf-home" style="margin-bottom:0"></div>
+    <div class="more-links"><a class="btn primary" href="#works"><span class="ru">Вся библиография</span><span class="en">Full bibliography</span> →</a><a class="btn" href="#voice"><span class="ru">Интервью и лекции</span><span class="en">Interviews and lectures</span> →</a></div>
+  </div>
+</section>
+</div>
+<div data-page="bio" hidden>
+<section class="section" id="bio">
+  <div class="wrap">
+    <div class="bio open" id="bio-box">
+      <div class="col">
+        <div class="eyebrow"><span class="ru">Биография</span><span class="en">Biography</span></div>
+        <h2><span class="ru">Учитель, который учит видеть историю в людях</span><span class="en">A teacher who taught us to see history in people</span></h2>
+        <div class="byline"><span class="ru">Текст: Наталья Гафизова, коллежанка и ученица</span><span class="en">By Natalia Gafizova, colleague and former student</span></div>
+        <div id="bio-text"></div>
+      </div>
+      <aside>
+        <p class="en">English translation of the biography is a draft for review.</p>
+        <p><span class="ru">Около 9 минут чтения</span><span class="en">About 9 minutes to read</span></p>
+      </aside>
+    </div>
+  </div>
+</section>
+</div>
+<div data-page="memories" hidden>
+<section class="section" id="memories">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow"><span class="ru">17 голосов</span><span class="en">17 voices</span></div><h2><span class="ru">Воспоминания</span><span class="en">Memories</span></h2></div>
+      <p><span class="ru">Коллеги, ученицы, соратницы и друзья из разных стран. Каждый текст доступен полностью на русском и английском.</span><span class="en">Colleagues, students, allies and friends from many countries. Every text is available in full in Russian and English.</span></p>
+    </div>
+    <div class="mem-grid" id="mem-grid"></div>
+  </div>
+</section>
+</div>
+<div data-page="works" hidden>
+<section class="section" id="works">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow"><span class="ru">Библиография</span><span class="en">Bibliography</span></div><h2><span class="ru">Труды</span><span class="en">Works</span></h2></div>
+      <p><span class="ru">Список собран по открытым источникам на 22 сентября 2026 года. Всего у Ольги было более 90 работ, поэтому перечень будет пополняться. Активна ссылка только там, где она ведёт на саму работу.</span><span class="en">Compiled from open sources as of 22 September 2026. Olga published more than 90 works, so the list will grow. A title is linked only when the link leads to the work itself. Russian titles are given in the original with an English translation in brackets.</span></p>
+    </div>
+    <div class="shelf" id="shelf"></div>
+    <p class="sub"><span class="ru">Избранные статьи</span><span class="en">Selected articles</span></p>
+    <div class="feat" id="feat"></div>
+
+    <div class="filters" id="filters">
+      <div class="frow" id="f-type"></div>
+      <div class="frow">
+        <input class="search" id="q" type="search" placeholder="Поиск по названию, журналу, соавторам" aria-label="Поиск">
+        <span id="f-lang" class="frow"></span>
+        <label class="check"><input id="f-full" type="checkbox"> <span class="ru">только полный текст</span><span class="en">full text only</span></label>
+        <span class="count" id="count"></span>
+      </div>
+    </div>
+    <div id="biblist"></div>
+  </div>
+</section>
+<section class="section" id="voice">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow"><span class="ru">Голос</span><span class="en">Her voice</span></div><h2><span class="ru">Интервью и лекции</span><span class="en">Interviews and lectures</span></h2></div>
+      <p><span class="ru">Лекции на Arzamas и интервью 2021–2022 годов о феминизме, гендерных исследованиях и войне.</span><span class="en">Lectures on Arzamas and interviews from 2021–2022 on feminism, gender studies and war.</span></p>
+    </div>
+    <div class="voice">
+      <div>
+        <figure><img src="img/interview.jpg" alt="Ольга Шнырова во время интервью" width="1340" height="755" loading="lazy"><figcaption><span class="ru">Кадр из видеоинтервью</span><span class="en">Still from a video interview</span></figcaption></figure>
+        <p class="sub" style="margin-top:36px"><span class="ru">О её книге писали</span><span class="en">Reviews of her book</span></p>
+        <ul class="vlist" id="responses"></ul>
+        <p class="sub"><span class="ru">Где ещё искать</span><span class="en">Other sources</span></p>
+        <ul class="vlist" id="profiles"></ul>
+      </div>
+      <div>
+        <p class="sub"><span class="ru">Лекции</span><span class="en">Lectures</span></p>
+        <ul class="vlist" id="lectures"></ul>
+        <p class="sub"><span class="ru">Интервью</span><span class="en">Interviews</span></p>
+        <ul class="vlist" id="interviews"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+<section class="section pager-sec"><div class="wrap"><p class="sub"><span class="ru">Другие разделы</span><span class="en">More</span></p><nav class="pager" id="pager" aria-label="Разделы сайта"></nav></div></section>
+<section class="section" id="share">
+  <div class="wrap">
+    <div class="share reveal">
+      <div>
+        <h2><span class="ru">Поделитесь воспоминанием</span><span class="en">Share a memory</span></h2>
+        <p><span class="ru">Если вы знали Ольгу, учились у неё или работали вместе, пришлите текст, фотографии или найденную публикацию. Мы добавим их на сайт. Напишите, можно ли указать ваше имя полностью.</span><span class="en">If you knew Olga, studied with her or worked together, send us a text, photos or a publication we missed. We will add them to the site. Please tell us whether we may use your full name.</span></p>
+      </div>
+      <div class="mailbox">
+        <span class="ru">Почта для писем</span><span class="en">Write to</span>
+        <a id="mail" class="mail" href="mailto:memory.shnyrova@gmail.com">memory.shnyrova@gmail.com</a>
+        <small><span class="ru">Нажмите на адрес, чтобы написать письмо</span><span class="en">Tap the address to write an email</span></small>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><span class="ru">Сайт памяти Ольги Вадимовны Шныровой, 2026</span><span class="en">In memory of Olga Vadimovna Shnyrova, 2026</span></div>
+    <div><span class="ru">Биография: Наталья Гафизова. Воспоминания: коллеги и друзья Ольги. Библиография актуальна на 22.09.2026.</span><span class="en">Biography by Natalia Gafizova. Memories by Olga's colleagues and friends. Bibliography current as of 22.09.2026.</span></div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" type="button" aria-label="Наверх">↑</button>
+<dialog id="reader"><div class="reader" id="reader-body"></div></dialog>
+<dialog id="lightbox" class="lightbox"><div class="reader"><img id="lb-img" alt=""><p><span id="lb-cap"></span><span style="display:flex;gap:8px"><button class="btn" id="lb-prev" type="button" aria-label="Предыдущая">←</button><button class="btn" id="lb-next" type="button" aria-label="Следующая">→</button><button class="btn" id="lb-close" type="button">✕</button></span></p></div></dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+const DATA = /*__DATA__*/null;
+const DIMS = /*__DIMS__*/{};
+let LANG = 'ru';
+try { const s = localStorage.getItem('os-lang'); if (s === 'en' || s === 'ru') LANG = s; } catch (e) {}
+const L = (o) => (o && typeof o === 'object' && 'ru' in o) ? o[LANG] : o;
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $ = (s) => document.querySelector(s);
+
+/* ---------------- timeline ---------------- */
+const TL = [
+  {y:'1957', key:1, h:{ru:'Рождение в Иванове',en:'Born in Ivanovo'}, p:{ru:'28 октября. Окончила гимназию № 30. Отсюда увлечение Великобританией и свободный английский.',en:'28 October. She attended School No. 30, the source of her love of Britain and her fluent English.'}},
+  {y:'1980', h:{ru:'Истфак ИвГУ и Ленинград',en:'Ivanovo and Leningrad'}, p:{ru:'Окончила исторический факультет Ивановского госуниверситета. Стажировка, затем аспирантура на кафедре новой и новейшей истории ЛГУ, ученица профессора Г. В. Ревуненкова.',en:'Graduated in history from Ivanovo State University. Then an internship and postgraduate study in the Department of Modern History at Leningrad State University under Professor G. V. Revunenkov.'}},
+  {y:'1984', h:{ru:'Кандидатская диссертация',en:'Candidate dissertation'}, p:{ru:'«Английский социализм конца XIX — начала XX вв. в современной историографии Великобритании».',en:'“English Socialism of the Late 19th and Early 20th Centuries in Contemporary British Historiography.”'}},
+  {y:'1985', h:{ru:'Доцент ИвГУ',en:'Associate professor'}, p:{ru:'Тридцать один год на кафедре новой, новейшей истории и международных отношений. Тысячи студентов и десятки дипломников.',en:'Thirty-one years in the Department of Modern and Contemporary History and International Relations. Thousands of students and dozens of thesis advisees.'}},
+  {y:'1996', key:1, h:{ru:'Ивановский Центр Гендерных Исследований',en:'Ivanovo Center for Gender Studies'}, p:{ru:'Центр создан по её инициативе, в 1997 году официально зарегистрирован. Ольга бессменно руководила им до конца жизни.',en:'Founded on her initiative and officially registered in 1997. Olga led it for the rest of her life.'}},
+  {y:'2000', h:{ru:'Первая летняя школа',en:'The first summer school'}, p:{ru:'Начало серии из 14 международных летних школ: Плёс, Очаков, Ереван и Севан, Порту, Понте-де-Лима, Коимбра, Реджо-ди-Калабрия, Кишинёв и Маловата.',en:'The start of 14 international summer schools: Plyos, Ochakiv, Yerevan and Sevan, Porto, Ponte de Lima, Coimbra, Reggio Calabria, Chișinău and Malovata.'}},
+  {y:'2001', h:{ru:'Оксфорд и ИВИ РАН',en:'Oxford and Moscow'}, p:{ru:'Стажировка в Раскин-колледже. В 2001–2004 годах докторантура Института всеобщей истории РАН.',en:'Visiting scholar at Ruskin College. Doctoral studies at the Institute of World History, Russian Academy of Sciences, 2001–2004.'}},
+  {y:'2002', h:{ru:'Её ученики',en:'Her students'}, p:{ru:'С 2002 по 2007 год под её руководством защищены четыре кандидатские диссертации.',en:'Between 2002 and 2007 four candidate dissertations were defended under her supervision.'}, students:1},
+  {y:'2004', h:{ru:'Смит-колледж и Стайтс',en:'Smith College and Stites'}, p:{ru:'Исследовательская стажировка в Смит-колледже (Нортгемптон, США). Перевод и научная редактура книги Ричарда Стайтса «Женское освободительное движение в России» (РОССПЭН).',en:'Research fellowship at Smith College, Northampton, USA. Translation and editing of Richard Stites’s The Women’s Liberation Movement in Russia (ROSSPEN).'}},
+  {y:'2006', h:{ru:'Aftermaths of War',en:'Aftermaths of War'}, p:{ru:'2006–2011: международный проект о женских движениях после Первой мировой войны. Соавторка трёх коллективных монографий.',en:'2006–2011: an international project on women’s movements after the First World War. Co-author of three collective volumes.'}},
+  {y:'2015', h:{ru:'Профсоюз и увольнение',en:'Union work and dismissal'}, p:{ru:'Одна из организаторок ячейки независимого профсоюза «Университетская солидарность». После конфликта с администрацией уволена; суд восстановил её, но в 2016 году последовало второе увольнение. Центр лишился помещения в университете.',en:'Co-organised a branch of the independent union University Solidarity. Dismissed after a conflict with the administration; reinstated by a court, then dismissed again in 2016. The Center lost its university premises.'}},
+  {y:'2019', key:1, h:{ru:'«Суфражизм в истории и культуре Великобритании»',en:'Suffragism in the History and Culture of Great Britain'}, p:{ru:'Монография в Издательстве Ивана Лимбаха: итог многолетней работы в британских архивах и библиотеках.',en:'Monograph published by Ivan Limbakh: the result of years of work in British archives and libraries.'}, cover:'suffrage'},
+  {y:'2021', h:{ru:'Статус «иностранного агента»',en:'Labelled a “foreign agent”'}, p:{ru:'Минюст внёс Ивановский Центр Гендерных Исследований в реестр. Ольга продолжала работу и выступала с лекциями, в том числе на No Flowers Fest во Владимире.',en:'The Ministry of Justice added the Center to its register. Olga kept working and lecturing, including at No Flowers Fest in Vladimir.'}},
+  {y:'2024', key:1, h:{ru:'«Иваново — город (не)невест» и Гаага',en:'Ivanovo book and The Hague'}, p:{ru:'Последняя книга: женская история родного города в пяти маршрутах. В ноябре в Гааге прошла организованная ею международная феминистская конференция по миростроительству «Дайте миру шанс».',en:'Her last book: the women’s history of her home town in five routes. In November she organised the international feminist peacebuilding conference Give Peace a Chance in The Hague.'}, cover:'ivanovo'},
+  {y:'2025', last:1, h:{ru:'XIV летняя школа',en:'The 14th summer school'}, p:{ru:'В июле в Понте-де-Лиме прошла школа «Политика страданий». 6 ноября 2025 года Ольги не стало.',en:'In July the school “The Politics of Suffering” took place in Ponte de Lima. Olga died on 6 November 2025.'}},
+];
+function renderTimeline(){
+  $('#timeline').innerHTML = TL.map(e => `
+    <div class="ev reveal ${e.key?'key':''} ${e.last?'last':''}">
+      <div class="yr">${e.y}</div><div class="dot" aria-hidden="true"></div>
+      <div class="body"><h3>${esc(L(e.h))}</h3><p>${esc(L(e.p))}</p>
+      ${e.students ? `<details class="students"><summary>${LANG==='ru'?'Диссертации учеников':'Students’ dissertations'}</summary><ol>${DATA.students.map(s=>`<li><a href="${s.url}" target="_blank" rel="noopener">${esc(s.title)}</a><br><span>${esc(s.name)}, ${s.year}</span></li>`).join('')}</ol></details>`:''}
+      ${e.cover ? `<figure class="mini"><div class="cover"><img src="img/cover-${e.cover}.jpg" alt="${LANG==='ru'?'Обложка книги':'Book cover'}" loading="lazy" data-photo="cover-${e.cover}"></div></figure>`:''}
+      ${e.img ? `<figure><img src="img/${e.img}.jpg" alt="${esc(L(e.cap))}" loading="lazy" data-photo="${e.img}"><figcaption>${esc(L(e.cap))}</figcaption></figure>`:''}
+      </div></div>`).join('');
+}
+
+/* ---------------- biography ---------------- */
+function renderBio(){
+  const ps = DATA.bio[LANG];
+  const pullAt = 18;
+  $('#bio-lead').textContent = ps[1];
+  $('#bio-text').innerHTML = ps.map((p,i) => (i===pullAt ? `<div class="pull">${LANG==='ru'?'Настоящий учитель отличается не только знаниями, но и способностью верить в своих учеников.':'A true teacher is distinguished not only by knowledge but by the ability to believe in her students.'}</div>`:'') + `<p>${esc(p)}</p>`).join('');
+}
+
+/* ---------------- photos ---------------- */
+const PHOTOS = [
+  ['lecture-1',{ru:'На лекции',en:'Lecturing'}],['summer-school',{ru:'Летняя школа',en:'Summer school'}],['olga-terrace',null],
+  ['class',{ru:'Участницы семинара',en:'Seminar participants'}],['prague-steps',{ru:'Прага',en:'Prague'}],['tv',{ru:'На телевидении',en:'On television'}],
+  ['picket',{ru:'Одиночный пикет',en:'Solo picket'}],['lisbon',{ru:'На отдыхе',en:'On holiday'}],['armenia-2021',{ru:'Июль 2021',en:'July 2021'}],
+  ['vladimir-2021',{ru:'No Flowers Fest, Владимир, 2021',en:'No Flowers Fest, Vladimir, 2021'}],['prague-cafe',{ru:'Прага',en:'Prague'}],['yabloko',{ru:'В «Яблоке»',en:'With Yabloko'}],['lecture-3',null],['delft',null],['istanbul-2024',{ru:'Стамбул, весна 2024',en:'Istanbul, spring 2024'}],['lavash-2021',{ru:'Июль 2021',en:'July 2021'}],['delft-cafe',null],['lecture-2',null],
+];
+const ALLPH = PHOTOS.concat([['portrait',null],['cover-suffrage',{ru:'Обложка монографии',en:'The book cover'}],['cover-ivanovo',{ru:'Обложка книги «Иваново. Город (не)невест»',en:'Cover of the Ivanovo book'}]]);
+function renderRail(){
+  $('#rail').innerHTML = PHOTOS.map(([f,c]) => `<figure><button type="button" data-photo="${f}" aria-label="${esc(c?L(c):(LANG==='ru'?'Фотография':'Photograph'))}"><img src="img/${f}.jpg" alt="${esc(c?L(c):'')}" loading="lazy" width="${(DIMS[f]||[4,3])[0]}" height="${(DIMS[f]||[4,3])[1]}"></button><figcaption>${c?esc(L(c)):''}</figcaption></figure>`).join('');
+}
+let lbIndex = 0;
+function openPhoto(id){ lbIndex = Math.max(0, ALLPH.findIndex(p=>p[0]===id)); showPhoto(); const d=$('#lightbox'); if(!d.open) d.showModal(); }
+function showPhoto(){ const [f,c]=ALLPH[lbIndex]; $('#lb-img').src=`img/${f}.jpg`; $('#lb-img').alt=c?L(c):''; $('#lb-cap').textContent=c?L(c):''; }
+$('#lb-prev').onclick=()=>{lbIndex=(lbIndex-1+ALLPH.length)%ALLPH.length;showPhoto();};
+$('#lb-next').onclick=()=>{lbIndex=(lbIndex+1)%ALLPH.length;showPhoto();};
+$('#lb-close').onclick=()=>$('#lightbox').close();
+document.addEventListener('click', e => { const t = e.target.closest('[data-photo]'); if (t) openPhoto(t.dataset.photo); });
+$('#lightbox').addEventListener('click', e => { if (e.target.id === 'lightbox') e.target.close(); });
+$('#lightbox').addEventListener('keydown', e => { if(e.key==='ArrowRight') $('#lb-next').click(); if(e.key==='ArrowLeft') $('#lb-prev').click(); });
+
+/* ---------------- map ---------------- */
+const KINDS = {school:{ru:'Летние школы',en:'Summer schools'}, science:{ru:'Учёба и наука',en:'Study and research'}, meet:{ru:'Конференции и встречи',en:'Conferences and meetings'}};
+const PTS = [
+  {id:'ivanovo',home:1,k:'science',lon:40.97,lat:57.00,n:{ru:'Иваново',en:'Ivanovo'},w:{ru:'1957–2025',en:'1957–2025'},t:{ru:'Родной город. Университет, кафедра и Ивановский Центр Гендерных Исследований.',en:'Home town. The university, her department and the Ivanovo Center for Gender Studies.'}},
+  {id:'plyos',k:'school',lon:41.51,lat:57.46,n:{ru:'Плёс',en:'Plyos'},w:{ru:'с 1990-х',en:'from the 1990s'},t:{ru:'Семинары по гендерной тематике для преподавателей, учителей, журналистов и сотрудников администраций; летние школы.',en:'Gender seminars for lecturers, teachers, journalists and local officials; summer schools.'},src:'Александра Карасева'},
+  {id:'ochakiv',k:'school',lon:31.55,lat:46.61,n:{ru:'Очаков',en:'Ochakiv'},w:{ru:'летняя школа',en:'summer school'},t:{ru:'Одна из международных летних школ, Украина.',en:'One of the international summer schools, Ukraine.'}},
+  {id:'yerevan',k:'school',lon:44.51,lat:40.18,n:{ru:'Ереван и Севан',en:'Yerevan and Sevan'},w:{ru:'летняя школа',en:'summer school'},t:{ru:'Летняя школа в Армении; позже встречи с коллегами в эмиграции.',en:'A summer school in Armenia; later, meetings with colleagues in exile.'},src:'Саида Сиражудинова, Ирина Мальцева'},
+  {id:'porto',k:'school',lon:-8.61,lat:41.15,n:{ru:'Порту',en:'Porto'},w:'2014',t:{ru:'Летняя школа для преподавателей российских университетов («гендер и война») с Университетом Фернандо Пессоа.',en:'Summer school for Russian university lecturers (gender and war) with Fernando Pessoa University.'},src:'Николай Вуков, Ингрид Шарп'},
+  {id:'ponte',k:'school',lon:-8.58,lat:41.77,n:{ru:'Понте-де-Лима',en:'Ponte de Lima'},w:{ru:'2018, июль 2025',en:'2018, July 2025'},t:{ru:'Школа «Современный мир сквозь призму гендера» и последняя, XIV школа «Политика страданий».',en:'“The Contemporary World through the Lens of Gender” and the 14th school, “The Politics of Suffering”, the last one.'},src:'Джулия Гаррайо, Антон Хвостов'},
+  {id:'coimbra',k:'school',lon:-8.43,lat:40.21,n:{ru:'Коимбра',en:'Coimbra'},w:'2019, 2024',t:{ru:'Две школы с Центром социальных исследований Университета Коимбры: об антигендерном повороте и о памяти войны.',en:'Two schools with the Centre for Social Studies, University of Coimbra: on the anti-gender turn and on war memory.'},src:'Джулия Гаррайо'},
+  {id:'reggio',k:'school',lon:15.65,lat:38.11,n:{ru:'Реджо-ди-Калабрия',en:'Reggio Calabria'},w:{ru:'летняя школа',en:'summer school'},t:{ru:'Летняя школа в Италии.',en:'A summer school in Italy.'}},
+  {id:'chisinau',k:'school',lon:28.86,lat:47.01,n:{ru:'Кишинёв и Маловата',en:'Chișinău and Malovata'},w:{ru:'июль 2022',en:'July 2022'},t:{ru:'Летняя школа в Молдове.',en:'Summer school in Moldova.'},src:'Антон Хвостов, Кателяйне Херинга'},
+  {id:'albania',k:'school',lon:19.82,lat:41.33,n:{ru:'Албания',en:'Albania'},w:{ru:'июль 2016',en:'July 2016'},t:{ru:'«Работа с травмой с гендерной перспективы» для преподавателей российских университетов.',en:'“Working with trauma from a gender perspective” for Russian university lecturers.'},src:'Ингрид Шарп'},
+  {id:'bulgaria',k:'school',lon:25.48,lat:42.73,n:{ru:'Болгария',en:'Bulgaria'},w:{ru:'июль 2015',en:'July 2015'},t:{ru:'«Коммеморация конфликтов» для преподавателей российских университетов.',en:'“Commemorating conflicts” for Russian university lecturers.'},src:'Ингрид Шарп'},
+  {id:'nevinnomyssk',k:'school',lon:41.94,lat:44.63,n:{ru:'Невинномысск',en:'Nevinnomyssk'},w:{ru:'школа',en:'school'},t:{ru:'Школа, где встретились петербургские художницы и правозащитницы Северного Кавказа.',en:'A school bringing together artists from St Petersburg and human rights defenders from the North Caucasus.'},src:'Елена Безрукова'},
+  {id:'leningrad',k:'science',lon:30.31,lat:59.94,n:{ru:'Ленинград',en:'Leningrad'},w:'1980–1984',t:{ru:'Аспирантура ЛГУ. Позже Ольга возила сюда студентов ИвГУ на летнюю музейную практику.',en:'Postgraduate study at Leningrad State University; later, summer museum internships with Ivanovo students.'},src:'Александра Карасева'},
+  {id:'moscow',k:'science',lon:37.62,lat:55.76,n:{ru:'Москва',en:'Moscow'},w:'2001–2004',t:{ru:'Докторантура Института всеобщей истории РАН.',en:'Doctoral studies at the Institute of World History.'}},
+  {id:'oxford',k:'science',lon:-1.26,lat:51.75,n:{ru:'Оксфорд',en:'Oxford'},w:'2001, 2014',t:{ru:'Стажировка в Раскин-колледже; семинары для российских аспирантов и учёных.',en:'Visiting scholar at Ruskin College; seminars for Russian doctoral students and scholars.'},src:'Ингрид Шарп'},
+  {id:'london',k:'science',lon:-0.13,lat:51.51,n:{ru:'Лондон',en:'London'},w:'2005',t:{ru:'Доклад на конференции «Женщины и война». Работа в Британской и Женской библиотеках для монографии.',en:'Paper at the Women and War conference. Research in the British Library and the Women’s Library for the monograph.'},src:'Ингрид Шарп'},
+  {id:'leeds',k:'science',lon:-1.55,lat:53.80,n:{ru:'Лидс',en:'Leeds'},w:'2008',t:{ru:'Конференция «Последствия войны», начало сети проекта Aftermaths of War.',en:'The Aftermaths of War conference and the start of the project network.'},src:'Ингрид Шарп, Николай Вуков'},
+  {id:'budapest',k:'science',lon:19.04,lat:47.50,n:{ru:'Будапешт',en:'Budapest'},w:{ru:'проект Aftermaths of War',en:'Aftermaths of War'},t:{ru:'Конференции и семинары международного проекта.',en:'Conferences and workshops of the international project.'},src:'Ингрид Шарп'},
+  {id:'hague',k:'meet',lon:4.30,lat:52.08,n:{ru:'Гаага',en:'The Hague'},w:{ru:'ноябрь 2024',en:'November 2024'},t:{ru:'Конференция «Дайте миру шанс», наследница Международной женской мирной конференции 1915 года.',en:'The Give Peace a Chance conference, heir to the International Congress of Women of 1915.'},src:'Джулия Гаррайо'},
+  {id:'istanbul',k:'meet',lon:28.98,lat:41.01,n:{ru:'Стамбул',en:'Istanbul'},w:{ru:'апрель 2024',en:'April 2024'},t:{ru:'Семинар.',en:'A seminar.'},src:'Антон Хвостов'},
+  {id:'bratislava',k:'meet',lon:17.11,lat:48.15,n:{ru:'Братислава',en:'Bratislava'},w:'2019',t:{ru:'Генеральная ассамблея Форума гражданского общества ЕС–Россия. Отсюда вырос проект HERstory.',en:'General Assembly of the EU–Russia Civil Society Forum, where the HERstory project began.'},src:'Кристина Риек'},
+  {id:'berlin',k:'meet',lon:13.40,lat:52.52,n:{ru:'Берлин',en:'Berlin'},w:{ru:'после 2022',en:'after 2022'},t:{ru:'Жила в Берлине, встречалась с коллегами, уехавшими из России.',en:'Lived in Berlin and met colleagues who had left Russia.'},src:'Елена Безрукова, Саида Сиражудинова'},
+  {id:'vladimir',k:'meet',lon:40.41,lat:56.13,n:{ru:'Владимир',en:'Vladimir'},w:'2021',t:{ru:'Лекция об истории российского феминизма на благотворительном фем-фестивале No Flowers Fest.',en:'A lecture on the history of Russian feminism at the feminist charity festival No Flowers Fest.'},src:'Татьяна Калинина'},
+];
+const ON = {school:true,science:true,meet:true};
+let mapSel = null, mapSvg = null;
+function renderMapUI(){
+  $('#legend').innerHTML = Object.entries(KINDS).map(([k,v]) => `<button class="chip" type="button" data-kind="${k}" aria-pressed="${ON[k]}"><i style="background:var(${k==='school'?'--violet':k==='science'?'--green':'--red'})"></i>${esc(L(v))}</button>`).join('');
+  $('#places').innerHTML = Object.entries(KINDS).map(([k,v]) => `<div class="g-${k}" ${ON[k]?'':'hidden'}><h3>${esc(L(v))}</h3><ul>${PTS.filter(p=>p.k===k).map(p=>`<li><button type="button" data-pt="${p.id}" class="${mapSel===p.id?'on':''}">${esc(L(p.n))}</button></li>`).join('')}</ul></div>`).join('');
+  showCard(mapSel || 'ivanovo');
+}
+function showCard(id){
+  const p = PTS.find(x=>x.id===id); if(!p) return;
+  const src = p.src ? `<p style="font-size:12px">${LANG==='ru'?'Из воспоминаний: ':'From the memories of: '}${esc(LANG==='ru'?p.src:translit(p.src))}</p>` : '';
+  $('#map-card').innerHTML = `<b>${esc(L(p.n))}</b><span class="when">${esc(L(p.w))}</span><p>${esc(L(p.t))}</p>${src}`;
+}
+const NAME_EN = {};
+function translit(s){ return s.split(', ').map(n => NAME_EN[n] || n).join(', '); }
+function selectPt(id){
+  mapSel = id; showCard(id);
+  document.querySelectorAll('#places button').forEach(b=>b.classList.toggle('on', b.dataset.pt===id));
+  if (mapSvg) mapSvg.selectAll('.pt').classed('on', d => d.id===id);
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-pt]'); if (b) selectPt(b.dataset.pt);
+  const c = e.target.closest('[data-kind]'); if (c){ ON[c.dataset.kind] = !ON[c.dataset.kind]; renderMapUI(); applyKinds(); }
+});
+function applyKinds(){ if(!mapSvg) return; mapSvg.selectAll('.pt,.arc').attr('display', d => ON[d.k] || d.home ? null : 'none'); }
+async function drawMap(){
+  if (!window.d3) return;
+  let geo; try { geo = await (await fetch('europe.json')).json(); } catch(e){ return; }
+  const W = 960, H = 640;
+  const svg = d3.select('#map-svg').append('svg').attr('viewBox',`0 0 ${W} ${H}`);
+  mapSvg = svg;
+  const proj = d3.geoConicConformal().parallels([38,58]).rotate([-17,0])
+    .fitExtent([[24,24],[W-24,H-24]], {type:'MultiPoint',coordinates:[[-11,36],[47,62],[47,37],[-11,59]]});
+  const path = d3.geoPath(proj);
+  svg.append('g').selectAll('path').data(geo.features).join('path').attr('class','country').attr('d',path);
+  const home = PTS[0];
+  const arcs = svg.append('g').selectAll('path').data(PTS.filter(p=>!p.home)).join('path')
+    .attr('class', d=>`arc k-${d.k}`).attr('d', d => path({type:'LineString',coordinates:[[home.lon,home.lat],[d.lon,d.lat]]}));
+  const g = svg.append('g').selectAll('g').data(PTS).join('g')
+    .attr('class', d => `pt k-${d.k} ${d.home?'home':''}`).attr('transform', d => `translate(${proj([d.lon,d.lat])})`)
+    .attr('tabindex',0).attr('role','button').attr('aria-label', d => L(d.n))
+    .on('click', (e,d) => selectPt(d.id)).on('keydown', (e,d) => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); selectPt(d.id);} });
+  g.append('circle').attr('class','halo').attr('r',6);
+  g.append('circle').attr('class','core').attr('r', d => d.home ? 7 : 5.5);
+  g.append('text').attr('x', d => d.lon < 0 ? -10 : 10).attr('y', 4).attr('text-anchor', d => d.lon < 0 ? 'end':'start').text(d => L(d.n));
+  applyKinds(); if (mapSel) selectPt(mapSel);
+  // draw-in once when visible
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window){
+    const io = new IntersectionObserver(es => { if (es.some(x=>x.isIntersecting)){ io.disconnect();
+      arcs.each(function(d,i){ const len = this.getTotalLength(); d3.select(this).attr('stroke-dasharray', len).attr('stroke-dashoffset', len).transition().delay(150+i*110).duration(900).ease(d3.easeCubicOut).attr('stroke-dashoffset',0).on('end', function(){ d3.select(this).attr('stroke-dasharray', null); }); });
+      g.filter(d=>!d.home).select('.core').attr('r',0).transition().delay((d,i)=>900+i*110).duration(400).attr('r',5.5);
+    }}, {threshold:.35});
+    io.observe(document.getElementById('map-svg'));
+  }
+}
+function relabelMap(){ if (mapSvg) mapSvg.selectAll('.pt text').text(d => L(d.n)); }
+
+/* ---------------- memoirs ---------------- */
+function renderMemoirs(){
+  DATA.memoirs.forEach(m => { NAME_EN[m.name.ru] = m.name.en; });
+  const card = (m,i) => `
+    <article class="mem reveal">
+      <div class="met">${esc(L(m.met))}</div>
+      <blockquote>${esc(L(m.quote))}</blockquote>
+      <div class="who"><div><b>${esc(L(m.name))}</b><small>${esc(L(m.role))}</small></div>
+      <button class="btn" type="button" data-mem="${i}">${LANG==='ru'?'Читать':'Read'}</button></div>
+    </article>`;
+  $('#mem-grid').innerHTML = DATA.memoirs.map(card).join('');
+  $('#mem-preview').innerHTML = [0,5,13].map(i => card(DATA.memoirs[i], i)).join('');
+}
+let memIndex = 0;
+
+function openMemoir(i){
+  memIndex = (i + DATA.memoirs.length) % DATA.memoirs.length;
+  const m = DATA.memoirs[memIndex], n = DATA.memoirs.length;
+  const prev = DATA.memoirs[(memIndex-1+n)%n], next = DATA.memoirs[(memIndex+1)%n];
+  $('#reader-body').innerHTML = `<button class="btn x" type="button" id="rd-close" aria-label="${LANG==='ru'?'Закрыть':'Close'}">✕</button>
+    <div class="eyebrow">${esc(L(m.met))}</div><h3>${esc(L(m.name))}</h3><div class="role">${esc(L(m.role))}</div>
+    ${m.text[LANG].map(p=>`<p>${esc(p)}</p>`).join('')}
+    <nav><button class="btn" type="button" data-mem="${memIndex-1}">← ${esc(L(prev.name))}</button><button class="btn" type="button" data-mem="${memIndex+1}">${esc(L(next.name))} →</button></nav>`;
+  const d = $('#reader'); if (!d.open) d.showModal(); $('#reader-body').scrollTop = 0;
+  $('#rd-close').onclick = () => d.close();
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-mem]'); if (b) openMemoir(+b.dataset.mem); });
+$('#reader').addEventListener('click', e => { if (e.target.id === 'reader') e.target.close(); });
+
+/* ---------------- works ---------------- */
+const TYPES = {all:{ru:'Все',en:'All'}, book:{ru:'Книги',en:'Books'}, article:{ru:'Статьи в журналах',en:'Journal articles'}, chapter:{ru:'Главы и статьи в сборниках',en:'Chapters'}, essay:{ru:'Эссе и доклады',en:'Essays and papers'}, edit:{ru:'Переводы и редактура',en:'Translation and editing'}};
+const LANGS = {all:{ru:'Все языки',en:'All languages'}, ru:{ru:'RU',en:'RU'}, en:{ru:'EN',en:'EN'}};
+const F = {type:'all', lang:'all', full:false, q:''};
+const DEC = [[0,1999,{ru:'1984–1999',en:'1984–1999'}],[2000,2009,{ru:'2000-е',en:'2000s'}],[2010,2019,{ru:'2010-е',en:'2010s'}],[2020,2029,{ru:'2020-е',en:'2020s'}]];
+function citation(p){ let s = `${p.authors.replace(/;?\s*$/,'')} ${p.title} // ${p.src}`.replace(/\s+/g,' ').trim(); if (p.url && !/doi\.org/.test(p.url)) s += ` — URL: ${p.url}`; return s; }
+function renderShelf(){
+  const b = (k) => DATA.pubs.find(p=>p.n===k);
+  const sb = b(39), iv = b(43), st = b(101);
+  $('#shelf').innerHTML = $('#shelf-home').innerHTML = `
+   <a class="book" href="${sb.url}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="cover"><img src="img/cover-suffrage.jpg" alt="Обложка книги «Суфражизм в истории и культуре Великобритании»" loading="lazy"></div><h3>${LANG==='ru'?esc(sb.title):'Suffragism in the History and Culture of Great Britain'}</h3><p>${LANG==='ru'?'Монография · Изд-во Ивана Лимбаха, 2019':'Monograph (in Russian) · Ivan Limbakh, 2019'}</p></a>
+   <a class="book" href="${iv.url}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="cover"><img src="img/cover-ivanovo.jpg" alt="Обложка книги «Иваново. Город (не)невест»" loading="lazy"></div><h3>${LANG==='ru'?'Иваново. Город (не)невест':'Ivanovo, a City of (Not) Brides'}</h3><p>${LANG==='ru'?'Женская история города в пяти маршрутах · соавторка и редакторка, 2024':'The women’s history of Ivanovo in five routes · co-author and editor, 2024'}</p></a>
+   <a class="book" href="${st.url}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="cover"><img src="img/cover-stites.jpg" alt="Обложка книги Ричарда Стайтса «Женское освободительное движение в России»" loading="lazy"></div><h3>${LANG==='ru'?'Ричард Стайтс. Женское освободительное движение в России':'Richard Stites. The Women’s Liberation Movement in Russia'}</h3><p>${LANG==='ru'?'Перевод и научная редактура · РОССПЭН, 2004':'Russian translation and editing · ROSSPEN, 2004'}</p></a>`;
+  $('#feat').innerHTML = DATA.pubs.filter(p=>p.featured && p.type!=='book' && p.type!=='edit').map(p => `<a href="${p.url}" target="_blank" rel="noopener"><div class="y">${p.year}</div><div class="t">${esc(p.title)}</div><div class="s">${esc(p.src.split(' — DOI')[0])}</div></a>`).join('');
+}
+function renderFilters(){
+  $('#f-type').innerHTML = Object.entries(TYPES).map(([k,v]) => `<button class="fbtn" type="button" data-ft="${k}" aria-pressed="${F.type===k}">${esc(L(v))}</button>`).join('');
+  $('#f-lang').innerHTML = Object.entries(LANGS).map(([k,v]) => `<button class="fbtn" type="button" data-fl="${k}" aria-pressed="${F.lang===k}">${esc(L(v))}</button>`).join('');
+  $('#q').placeholder = LANG==='ru' ? 'Поиск по названию, журналу, соавторам' : 'Search titles, journals, co-authors';
+}
+const OPENDEC = new Set();
+const plural = (n) => { const a=n%10,b=n%100; return a===1&&b!==11?'работа':(a>=2&&a<=4&&(b<10||b>=20))?'работы':'работ'; };
+function renderBib(){
+  const q = F.q.trim().toLowerCase();
+  const list = DATA.pubs.filter(p => (F.type==='all'||p.type===F.type) && (F.lang==='all'||p.lang===F.lang) && (!F.full||p.full) && (!q || (p.title+' '+p.src+' '+p.authors).toLowerCase().includes(q)))
+    .sort((a,b) => (a.year||9999)-(b.year||9999) || a.n-b.n);
+  $('#count').textContent = (LANG==='ru'?'Показано ':'Showing ') + list.length + (LANG==='ru'?' из ':' of ') + DATA.pubs.length;
+  if (!list.length){ $('#biblist').innerHTML = `<p class="empty">${LANG==='ru'?'Ничего не найдено. Попробуйте другое слово или сбросьте фильтры.':'Nothing found. Try another word or clear the filters.'}</p>`; return; }
+  const groups = DEC.map(([a,b,l]) => [l, list.filter(p=>p.year && p.year>=a && p.year<=b)]).concat([[{ru:'Год не установлен',en:'Year unknown'}, list.filter(p=>!p.year)]]).filter(g=>g[1].length);
+  const active = F.type!=='all' || F.lang!=='all' || F.full || q;
+  $('#biblist').innerHTML = groups.map(([l,ps],gi) => `<details class="dec" ${active || OPENDEC.has(gi) ? 'open':''} data-dec="${gi}"><summary><h3>${esc(L(l))}</h3><span>${ps.length} ${LANG==='ru'?plural(ps.length):'items'}</span></summary><ol class="items">${ps.map(p => `
+    <li class="it"><div class="y">${p.year||'—'}</div><div>
+      <div class="au">${esc(p.authors)}</div>
+      <div class="ti">${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${esc(p.title)}</a>` : esc(p.title)}</div>${LANG==='en' && p.title_en ? `<div class="tr">[${esc(p.title_en)}]</div>`:''}
+      <div class="so">${esc(p.src)}</div>${p.note?`<div class="nt">${esc(p.note)}</div>`:''}
+      <div class="badges">${p.full?`<span class="badge">${LANG==='ru'?'Полный текст':'Full text'}</span>`:''}${p.url && /doi\.org/.test(p.url)?'<span class="badge l">DOI</span>':''}${p.lang==='en'?'<span class="badge l">EN</span>':''}</div>
+    </div><button class="cite" type="button" data-cite="${p.n}">${LANG==='ru'?'Цитировать':'Cite'}</button></li>`).join('')}</ol></details>`).join('');
+  document.querySelectorAll('#biblist details').forEach(d => d.addEventListener('toggle', () => { if (!active){ d.open ? OPENDEC.add(+d.dataset.dec) : OPENDEC.delete(+d.dataset.dec); } }));
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-ft]'); if (t){ F.type = t.dataset.ft; renderFilters(); renderBib(); }
+  const l = e.target.closest('[data-fl]'); if (l){ F.lang = l.dataset.fl; renderFilters(); renderBib(); }
+  const c = e.target.closest('[data-cite]'); if (c){ const p = DATA.pubs.find(x=>x.n===+c.dataset.cite); copy(citation(p), c, LANG==='ru'?'Скопировано':'Copied'); }
+});
+$('#q').addEventListener('input', e => { F.q = e.target.value; renderBib(); });
+$('#f-full').addEventListener('change', e => { F.full = e.target.checked; renderBib(); });
+function copy(text, btn, okText){
+  const old = btn.innerHTML;
+  const done = () => { btn.classList.add('ok'); btn.textContent = okText; setTimeout(()=>{ btn.classList.remove('ok'); btn.innerHTML = old; }, 1600); };
+  try { navigator.clipboard.writeText(text).then(done, () => fallback()); } catch(e){ fallback(); }
+  function fallback(){ const ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(_){} ta.remove(); }
+}
+
+/* ---------------- voice ---------------- */
+function renderVoice(){
+  const li = (x, kind) => `<li><a href="${x.url}" target="_blank" rel="noopener">${esc(LANG==='en' && x.title_en && /profile/.test(x.type||'') ? x.title_en : x.title)}</a>${LANG==='en' && x.title_en && !/profile/.test(x.type||'') ? `<small class="tr">[${esc(x.title_en)}]</small>`:''}<small>${esc(x.src)}</small>${kind?`<span class="kind">${kind}</span>`:''}</li>`;
+  $('#lectures').innerHTML = DATA.lectures.map(x=>li(x, 'Arzamas')).join('').replace(/Arzamas<\/span><\/li>/, 'Arzamas</span></li>');
+  $('#lectures').innerHTML = DATA.lectures.map(x=>li(x, /arzamas|podcast/i.test(x.url+x.src)?'Arzamas':(LANG==='ru'?'доклад':'talk'))).join('');
+  $('#interviews').innerHTML = DATA.interviews.map(x=>li(x, x.year)).join('');
+  $('#responses').innerHTML = DATA.responses.map(x=>li(x)).join('');
+  $('#profiles').innerHTML = DATA.profiles.map(x=>li(x)).join('');
+}
+
+/* ---------------- counters ---------------- */
+(function counters(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  const els = document.querySelectorAll('[data-count]');
+  const io = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; io.unobserve(en.target);
+    const el = en.target, end = +el.dataset.count, start = end > 1900 ? 1957 : 0, suf = el.dataset.suffix || '', t0 = performance.now();
+    if (end > 1900) return; // year stays still
+    const step = (t) => { const k = Math.min(1,(t-t0)/1400), v = Math.round(start + (end-start)*(1-Math.pow(1-k,3))); el.textContent = v + suf; if (k<1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }), {threshold:.6});
+  els.forEach(e => io.observe(e));
+})();
+
+/* ---------------- language ---------------- */
+function setLang(l){
+  LANG = l; document.documentElement.lang = l;
+  try { localStorage.setItem('os-lang', l); } catch(e){}
+  $('#lang-ru').setAttribute('aria-pressed', l==='ru'); $('#lang-en').setAttribute('aria-pressed', l==='en');
+  renderAll(); relabelMap(); setTimeout(optical, 30); if (typeof setTitle==='function') setTitle();
+}
+$('#lang-ru').onclick = () => setLang('ru'); $('#lang-en').onclick = () => setLang('en');
+function renderAll(){ if (typeof renderPager==='function' && document.getElementById('pager').innerHTML) renderPager(); renderTimeline(); renderBio(); renderRail(); renderMemoirs(); renderMapUI(); renderShelf(); renderFilters(); renderBib(); renderVoice(); }
+document.documentElement.lang = LANG;
+$('#lang-ru').setAttribute('aria-pressed', LANG==='ru'); $('#lang-en').setAttribute('aria-pressed', LANG==='en');
+const PAGES = {bio:'bio', memories:'memories', works:'works', voice:'works'};
+let CUR = 'home';
+const PAGER = [
+  ['life', {ru:'Жизнь',en:'Life'}, {ru:'Вехи, карта школ, фотографии',en:'Milestones, map, photographs'}, 'home'],
+  ['bio', {ru:'Биография',en:'Biography'}, {ru:'Текст Натальи Гафизовой',en:'By Natalia Gafizova'}, 'bio'],
+  ['memories', {ru:'Воспоминания',en:'Memories'}, {ru:'17 голосов',en:'17 voices'}, 'memories'],
+  ['works', {ru:'Труды',en:'Works'}, {ru:'Библиография, интервью, лекции',en:'Bibliography, interviews, lectures'}, 'works'],
+];
+const TITLES = {home:{ru:'Ольга Шнырова (1957–2025). Сайт памяти',en:'Olga Shnyrova (1957–2025). In memoriam'}, bio:{ru:'Биография. Ольга Шнырова',en:'Biography. Olga Shnyrova'}, memories:{ru:'Воспоминания. Ольга Шнырова',en:'Memories. Olga Shnyrova'}, works:{ru:'Труды. Ольга Шнырова',en:'Works. Olga Shnyrova'}};
+function setTitle(){ document.title = L(TITLES[CUR] || TITLES.home); }
+function renderPager(){ $('#pager').innerHTML = PAGER.filter(p => p[3] !== CUR).map(p => `<a href="#${p[0]}"><b>${esc(L(p[1]))} →</b><span>${esc(L(p[2]))}</span></a>`).join(''); }
+function route(){
+  const h = location.hash.slice(1);
+  const page = PAGES[h] || 'home';
+  const changed = page !== CUR;
+  document.querySelectorAll('[data-page]').forEach(el => { el.hidden = el.dataset.page !== page; });
+  CUR = page; renderPager(); setTitle();
+  const target = h && document.getElementById(h);
+  if (h === page || (!target && changed)) scrollTo(0,0);
+  else if (target) target.scrollIntoView();
+  dispatchEvent(new Event('scroll'));
+}
+addEventListener('hashchange', route);
+renderAll(); drawMap(); route();
+/* optical left alignment: measured corrections for the first glyph of each display heading (in em, per language) */
+const OPT = {'Ольга ШныроваOlga':{ru:.0223,en:-.0074},'ЖизньLife':{ru:.0139,en:-.0139},'Учитель, который у':{ru:.0089,en:.0089},
+  'ВоспоминанияMemori':{ru:-.0139,en:-.0139},'ТрудыWorks':{ru:0,en:.0139},'Поделитесь воспоми':{ru:0,en:-.05},'Интервью и лекцииI':{ru:0,en:-.0139},
+  'БиографияBiography':{ru:.042,en:.042}};
+function optical(){
+  document.querySelectorAll('.hero h1, .sec-head h2, .pv-bio h2, .bio h2, .share h2, .eyebrow').forEach(el => {
+    const o = OPT[el.textContent.trim().slice(0,18).trim()];
+    el.style.marginLeft = o && o[LANG] ? o[LANG] + 'em' : '';
+  });
+}
+optical();
+addEventListener('hashchange', () => setTimeout(optical, 30));
+(function spy(){
+  const links = [...document.querySelectorAll('.nav a')]; const ids = links.map(a => a.getAttribute('href').slice(1));
+  const visible = (el) => el && el.offsetParent !== null;
+  const tt = $('#totop'); tt.onclick = () => scrollTo({top:0, behavior:'smooth'});
+  const onScroll = () => { tt.classList.toggle('show', scrollY > 900);
+    let cur = ''; for (const id of ids){ const el = document.getElementById(id); if (visible(el) && el.getBoundingClientRect().top < 140) cur = id; }
+    if (!cur && CUR !== 'home') cur = CUR;
+    links.forEach(a => { const on = a.getAttribute('href') === '#'+cur; a.setAttribute('aria-current', on); if (on && a.dataset.on !== '1'){ a.scrollIntoView({block:'nearest', inline:'center'}); } a.dataset.on = on ? '1':''; });
+  };
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
+</script>
