@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&family=Golos+Text:wght@400;500;600&display=swap">
 <style>
-/* Layout: a memorial long-read on deep violet. Dark-first: the site is always dark unless a viewer explicitly asks for light. */
+/* Layout: a memorial long-read on deep violet. Always dark: no light variant, whatever theme the viewer's app uses. */
 :root{
   --paper:#1A1221; --card:#23182C; --ink:#F2ECF6; --muted:#B1A4BC; --rule:#3A2C46;
   --violet:#D5B8EA; --violet-2:#BE97DC; --violet-soft:#2F2239;
@@ -19,13 +19,6 @@
   --measure:66ch;
   color-scheme:dark;
 }
-:root[data-theme="light"]{
-  --paper:#F6F4F8; --card:#FFFFFF; --ink:#1D1823; --muted:#615868; --rule:#DDD5E4;
-  --violet:#4B2563; --violet-2:#6E3E8C; --violet-soft:#ECE4F2;
-  --green:#1E6A46; --green-soft:#DFEFE5; --red:#A32A2C;
-  --band:#4B2563; --band-ink:#FFFFFF;
-  --sash-w:#FBFAFC; --land:#E7E1EC; --land-line:#F6F4F8; --shadow:0 1px 2px rgba(40,20,60,.06),0 8px 28px rgba(40,20,60,.08); color-scheme:light }
-
 *{box-sizing:border-box}
 html,body{overflow-x:clip;max-width:100%}
 body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -39,6 +32,20 @@ body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .more-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 .more-links .btn{text-decoration:none}
 a.btn{text-decoration:none}
+.book-block{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:32px 64px;align-items:center;background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:clamp(24px,4vw,48px)}
+.book-doc{display:block;border-radius:3px;overflow:hidden;box-shadow:var(--shadow);transform:rotate(-2deg);transition:transform .3s}
+.book-doc:hover{transform:rotate(0)}
+.book-doc img{width:100%;height:auto;display:block}
+.book-text h2{font-size:clamp(30px,3.6vw,46px);margin:8px 0 10px}
+.book-text p{margin:0 0 14px;max-width:60ch}
+.book-meta{font-family:var(--f-ui);font-size:14px;color:var(--muted)}
+@media (max-width:700px){ .book-block{grid-template-columns:1fr} .book-doc{max-width:220px} }
+#mem-preview-sec + .section{border-top:0;padding-top:0}
+.crumbs{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,44px)}
+.crumbs .back{font-family:var(--f-ui);font-size:14px;font-weight:600;color:var(--green);text-decoration:none;border:1.5px solid var(--green);border-radius:999px;padding:7px 16px;transition:background-color .2s,color .2s}
+.crumbs .back:hover{background:var(--green);color:var(--paper)}
+.crumbs .here{font-family:var(--f-ui);font-size:13px;color:var(--muted)}
+.has-crumbs{border-top:0;padding-top:24px}
 .pager-sec{padding-block:56px}
 .pager-sec + .section{border-top:0;padding-top:0}
 .pager{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
@@ -56,6 +63,7 @@ a:hover{color:var(--violet)}
 img{max-width:100%;display:block}
 .wrap{max-width:1180px;margin:0 auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
 h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.1;text-wrap:balance;margin:0}
+.mc{font-weight:inherit}
 .eyebrow{font-family:var(--f-ui);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--violet)}
 .section{padding-block:clamp(64px,9vw,120px);border-top:1px solid var(--rule)}
 .sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px 64px;align-items:last baseline;margin-bottom:48px}
@@ -124,15 +132,16 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 /* ---------- timeline ---------- */
 .tl{position:relative;display:grid;gap:0}
-.tl::before,.tl::after{content:"";position:absolute;left:calc(8.5rem + 7px);top:8px;bottom:8px;width:2px;background:var(--rule)}
-.tl::after{background:linear-gradient(var(--violet),var(--green));transform-origin:top}
-@supports (animation-timeline: view()){ .tl::after{animation:grow linear both;animation-timeline:view();animation-range:entry 10% exit 70%} }
-@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-.ev{display:grid;grid-template-columns:8.5rem 16px minmax(0,1fr);gap:0 28px;padding-block:18px}
+.tl::before,.tl::after{content:"";position:absolute;z-index:0;left:calc(var(--x,8px) - 1px);top:var(--top,8px);width:2px;border-radius:1px}
+.tl::before{height:var(--len,0px);background:var(--rule)}
+.tl::after{height:var(--p,0px);background:linear-gradient(var(--violet),var(--green));transition:height .18s linear}
+.ev{display:grid;grid-template-columns:8.5rem 16px minmax(0,1fr);gap:0 28px;padding-block:18px;position:relative;z-index:1}
 .ev .yr{font-family:var(--f-display);font-size:30px;line-height:1.1;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
-.ev .dot{width:16px;height:16px;border-radius:50%;background:var(--paper);border:2px solid var(--violet);margin-top:9px;position:relative;z-index:1}
-.ev.key .dot{background:var(--violet)}
-.ev.last .dot{background:var(--paper);border-color:var(--muted)}
+.ev .dot{width:16px;height:16px;border-radius:50%;background:var(--paper);border:2px solid var(--rule);margin-top:9px;position:relative;z-index:1;transition:background-color .25s,border-color .25s,box-shadow .25s}
+.ev.on .dot{background:var(--violet);border-color:var(--violet)}
+.ev.key.on .dot{box-shadow:0 0 0 5px var(--violet-soft)}
+.ev.last.on .dot{background:var(--muted);border-color:var(--muted)}
+@media (prefers-reduced-motion: reduce){ .tl::after,.ev .dot{transition:none} }
 .ev .body{max-width:62ch}
 .ev h3{font-size:24px;margin-bottom:6px}
 .ev p{margin:0;color:var(--muted)}
@@ -146,7 +155,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .students ol{margin:0 0 12px;padding-left:20px;display:grid;gap:8px;font-size:15px}
 .students li span{color:var(--muted);font-family:var(--f-ui);font-size:13px}
 @media (max-width:640px){
-  .tl::before,.tl::after{left:7px}
   .ev{grid-template-columns:16px minmax(0,1fr);gap:4px 18px}
   .ev .yr{grid-column:2;text-align:left;font-size:24px}
   .ev .dot{grid-row:1;grid-column:1;margin-top:6px}
@@ -248,8 +256,11 @@ dialog::backdrop{background:rgba(20,10,28,.55);backdrop-filter:blur(3px)}
 @media (max-width:760px){ .shelf{grid-template-columns:1fr 1fr} }
 @media (max-width:480px){ .shelf{grid-template-columns:1fr} }
 .book{display:flex;flex-direction:column;gap:12px}
+.book-link{display:flex;flex-direction:column;gap:12px;text-decoration:none;color:inherit}
+.book-actions{display:flex;flex-wrap:wrap;gap:8px}
+.book-actions .btn{padding:6px 12px;font-size:13px}
 .cover{aspect-ratio:2/3;border-radius:2px 6px 6px 2px;box-shadow:var(--shadow),inset 6px 0 0 rgba(0,0,0,.12);overflow:hidden;position:relative;transition:transform .35s}
-.book:hover .cover{transform:translateY(-4px) rotate(-.6deg)}
+.book-link:hover .cover,a.book:hover .cover{transform:translateY(-4px) rotate(-.6deg)}
 .cover img{width:100%;height:100%;object-fit:cover}
 .cover.type{padding:22px 20px;display:flex;flex-direction:column;justify-content:space-between;color:#F6F1F8}
 .cover.type.v{background:#3E1F52}
@@ -313,6 +324,7 @@ dialog::backdrop{background:rgba(20,10,28,.55);backdrop-filter:blur(3px)}
 .vlist li{border-top:1px solid var(--rule);padding:12px 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px}
 .vlist a{font-size:17px;line-height:1.35;color:var(--ink);text-decoration:none}
 .vlist a:hover{color:var(--green)}
+.vlist .nolink{font-size:17px;line-height:1.35}
 .vlist small.tr{font-style:italic;font-family:var(--f-body);font-size:14px}
 .vlist small{font-family:var(--f-ui);font-size:13px;color:var(--muted);grid-column:1}
 .vlist .kind{font-family:var(--f-ui);font-size:12px;color:var(--violet);grid-row:1/4;grid-column:2;align-self:center}
@@ -321,12 +333,18 @@ dialog::backdrop{background:rgba(20,10,28,.55);backdrop-filter:blur(3px)}
 /* ---------- share ---------- */
 .share{background:var(--band);color:var(--band-ink);border-radius:18px;padding:clamp(28px,6vw,72px);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:center;position:relative;overflow:hidden}
 @media (max-width:800px){ .share{grid-template-columns:1fr} }
+.share{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+@media (max-width:800px){ .share{grid-template-columns:1fr} }
 .share h2{font-size:clamp(34px,5vw,60px);color:var(--band-ink)}
 .share p{margin:14px 0 0;max-width:52ch;opacity:.92}
-.mailbox{background:var(--paper);color:var(--ink);border-radius:12px;padding:20px;font-family:var(--f-ui);position:relative;z-index:1}
-.mailbox .mail{display:block;font-family:var(--f-ui);font-size:clamp(17px,2vw,21px);font-weight:600;word-break:break-all;margin:6px 0 4px;color:var(--violet);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-.mailbox .mail:hover{color:var(--green)}
-.mailbox small{display:block;color:var(--muted);font-size:12px;margin-top:10px}
+.mailbox{font-family:var(--f-ui);color:var(--band-ink);position:relative;z-index:1;display:grid;gap:10px;justify-items:start}
+.mailbox .lbl{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.mailbox .mail{font-family:var(--f-display);font-size:clamp(19px,2.1vw,27px);line-height:1.2;white-space:nowrap;color:var(--band-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px;text-decoration-color:rgba(247,241,251,.45)}
+.mailbox{min-width:0;max-width:100%}
+@media (max-width:800px){ .mailbox .mail{font-size:clamp(16px,5.2vw,24px)} }
+.mailbox .mail:hover{text-decoration-color:var(--band-ink)}
+.mailbox .write{margin-top:8px;font-size:14px;font-weight:600;background:var(--band-ink);color:var(--band);border-radius:999px;padding:10px 20px;text-decoration:none;transition:opacity .2s}
+.mailbox .write:hover{opacity:.88}
 
 footer{padding-block:48px 64px;font-family:var(--f-ui);font-size:13px;color:var(--muted)}
 footer .wrap{display:grid;gap:10px}
@@ -340,6 +358,7 @@ footer .wrap{display:grid;gap:10px}
       <a href="#bio"><span class="ru">Биография</span><span class="en">Biography</span></a>
       <a href="#map"><span class="ru">Карта</span><span class="en">Map</span></a>
       <a href="#memories"><span class="ru">Воспоминания</span><span class="en">Memories</span></a>
+      <a href="#book"><span class="ru">Книга памяти</span><span class="en">Memory book</span></a>
       <a href="#works"><span class="ru">Труды</span><span class="en">Works</span></a>
       <a href="#voice"><span class="ru">Интервью</span><span class="en">Interviews</span></a>
       <a href="#share"><span class="ru">Написать</span><span class="en">Contribute</span></a>
@@ -370,7 +389,7 @@ footer .wrap{display:grid;gap:10px}
     <div class="stats" id="stats">
       <div class="stat"><b data-count="90" data-suffix="+">90+</b><span class="ru">научных работ</span><span class="en">academic works</span></div>
       <div class="stat"><b data-count="14">14</b><span class="ru">международных летних школ</span><span class="en">international summer schools</span></div>
-      <div class="stat"><b data-count="1996">1996</b><span class="ru">создан Ивановский Центр Гендерных Исследований</span><span class="en">Center for Gender Studies founded</span></div>
+      <div class="stat"><b data-count="1997">1997</b><span class="ru">зарегистрирован Ивановский Центр Гендерных Исследований</span><span class="en">Ivanovo Center for Gender Studies registered</span></div>
       <div class="stat"><b data-count="31">31</b><span class="ru">год преподавания в ИвГУ</span><span class="en">years teaching at Ivanovo State University</span></div>
     </div>
   </div>
@@ -380,7 +399,7 @@ footer .wrap{display:grid;gap:10px}
   <div class="wrap">
     <div class="sec-head reveal">
       <div><div class="eyebrow"><span class="ru">Вехи</span><span class="en">Milestones</span></div><h2><span class="ru">Жизнь</span><span class="en">Life</span></h2></div>
-      <p><span class="ru">От Иванова до Понте-де-Лимы: университет, центр, книги, школы и люди, которых она собирала вместе.</span><span class="en">From Ivanovo to Ponte de Lima: the university, the Center, the books, the schools and the people she brought together.</span></p>
+      <p><span class="ru">Главные события жизни Ольги: учёба, университет, Ивановский Центр Гендерных Исследований, книги и международные школы.</span><span class="en">The main events of Olga’s life: her studies, the university, the Ivanovo Center for Gender Studies, her books and the international schools.</span></p>
     </div>
     <div class="tl" id="timeline"></div>
   </div>
@@ -416,18 +435,32 @@ footer .wrap{display:grid;gap:10px}
       <div class="map-box"><div id="map-svg" role="img" aria-label="Карта мест, связанных с Ольгой Шныровой"></div></div>
       <div class="side"><div class="map-card" id="map-card" aria-live="polite"></div><div class="places" id="places"></div></div>
     </div>
-    <p class="map-note"><span class="ru">За пределами карты: Нортгемптон, США (Смит-колледж, 2004) и Хэмлайн, США (конференция проекта Aftermaths of War).</span><span class="en">Beyond the map: Northampton, USA (Smith College, 2004) and Hamline, USA (an Aftermaths of War conference).</span></p>
+    <p class="map-note"><span class="ru">За пределами карты: Нортгемптон, США (Смит-колледж, 2004), Хэмлайн, США (конференция проекта Aftermaths of War) и Оттава, Канада (научный конгресс).</span><span class="en">Beyond the map: Northampton, USA (Smith College, 2004), Hamline, USA (an Aftermaths of War conference) and Ottawa, Canada (an academic congress).</span></p>
   </div>
 </section>
 
 <section class="section" id="mem-preview-sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="eyebrow"><span class="ru">17 голосов</span><span class="en">17 voices</span></div><h2><span class="ru">Воспоминания</span><span class="en">Memories</span></h2></div>
+      <div><div class="eyebrow"><span class="ru"><b class="mc">18</b> голосов</span><span class="en"><b class="mc">18</b> voices</span></div><h2><span class="ru">Воспоминания</span><span class="en">Memories</span></h2></div>
       <p><span class="ru">Коллеги, ученицы, соратницы и друзья из разных стран.</span><span class="en">Colleagues, students, allies and friends from many countries.</span></p>
     </div>
     <div class="mem-grid three" id="mem-preview"></div>
-    <div class="more-links"><a class="btn primary" href="#memories"><span class="ru">Все 17 воспоминаний</span><span class="en">All 17 memories</span> →</a></div>
+    <div class="more-links"><a class="btn primary" href="#memories"><span class="ru">Все <b class="mc">18</b> воспоминаний</span><span class="en">All <b class="mc">18</b> memories</span> →</a></div>
+  </div>
+</section>
+<section class="section" id="book-home">
+  <div class="wrap">
+    <div class="book-block reveal">
+      <a class="book-doc" href="files/shnyrova-memory-book.pdf" target="_blank" rel="noopener" aria-label="Открыть Книгу памяти в PDF"><img src="img/memory-book.jpg" alt="Титульная страница Книги памяти" width="910" height="1287" loading="lazy"></a>
+      <div class="book-text">
+        <div class="eyebrow"><span class="ru">Книга памяти</span><span class="en">Memory book</span></div>
+        <h2><span class="ru">Памяти Ольги Шныровой посвящается</span><span class="en">In memory of Olga Shnyrova</span></h2>
+        <p class="book-meta"><span class="ru">Воспоминания друзей и коллег · 2026 · 102 страницы · на русском и английском</span><span class="en">Memories of friends and colleagues · 2026 · 102 pages · Russian and English</span></p>
+        <p><span class="ru">Сборник собрали подруги, коллежанки, ученицы и соратницы Ольги. В нём вехи жизни, биография, избранные публикации, воспоминания из разных стран и два интервью Ольги: «Холоду» (2021) и «Черте» (2022).</span><span class="en">The book was compiled by Olga’s friends, colleagues, students and allies. It brings together the milestones of her life, a biography, selected publications, memories from many countries and two interviews with Olga, for Kholod (2021) and Cherta (2022).</span></p>
+        <div class="more-links"><a class="btn primary" href="files/shnyrova-memory-book.pdf" target="_blank" rel="noopener"><span class="ru">Открыть PDF</span><span class="en">Open PDF</span> →</a><a class="btn" href="files/shnyrova-memory-book.pdf" download><span class="ru">Скачать · 1,2 МБ</span><span class="en">Download · 1.2 MB</span></a></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -443,8 +476,9 @@ footer .wrap{display:grid;gap:10px}
 </section>
 </div>
 <div data-page="bio" hidden>
-<section class="section" id="bio">
+<section class="section has-crumbs" id="bio">
   <div class="wrap">
+    <nav class="crumbs" aria-label="Навигация"><a class="back" href="#top">← <span class="ru">На главную</span><span class="en">Home</span></a><span class="here"><span class="ru">Биография</span><span class="en">Biography</span></span></nav>
     <div class="bio open" id="bio-box">
       <div class="col">
         <div class="eyebrow"><span class="ru">Биография</span><span class="en">Biography</span></div>
@@ -461,19 +495,36 @@ footer .wrap{display:grid;gap:10px}
 </section>
 </div>
 <div data-page="memories" hidden>
-<section class="section" id="memories">
+<section class="section has-crumbs" id="memories">
   <div class="wrap">
+    <nav class="crumbs" aria-label="Навигация"><a class="back" href="#top">← <span class="ru">На главную</span><span class="en">Home</span></a><span class="here"><span class="ru">Воспоминания и Книга памяти</span><span class="en">Memories and memory book</span></span></nav>
     <div class="sec-head reveal">
-      <div><div class="eyebrow"><span class="ru">17 голосов</span><span class="en">17 voices</span></div><h2><span class="ru">Воспоминания</span><span class="en">Memories</span></h2></div>
+      <div><div class="eyebrow"><span class="ru"><b class="mc">18</b> голосов</span><span class="en"><b class="mc">18</b> voices</span></div><h2><span class="ru">Воспоминания</span><span class="en">Memories</span></h2></div>
       <p><span class="ru">Коллеги, ученицы, соратницы и друзья из разных стран. Каждый текст доступен полностью на русском и английском.</span><span class="en">Colleagues, students, allies and friends from many countries. Every text is available in full in Russian and English.</span></p>
     </div>
     <div class="mem-grid" id="mem-grid"></div>
   </div>
 </section>
+
+<section class="section" id="book">
+  <div class="wrap">
+    <div class="book-block reveal">
+      <a class="book-doc" href="files/shnyrova-memory-book.pdf" target="_blank" rel="noopener" aria-label="Открыть Книгу памяти в PDF"><img src="img/memory-book.jpg" alt="Титульная страница Книги памяти" width="910" height="1287" loading="lazy"></a>
+      <div class="book-text">
+        <div class="eyebrow"><span class="ru">Книга памяти</span><span class="en">Memory book</span></div>
+        <h2><span class="ru">Памяти Ольги Шныровой посвящается</span><span class="en">In memory of Olga Shnyrova</span></h2>
+        <p class="book-meta"><span class="ru">Воспоминания друзей и коллег · 2026 · 102 страницы · на русском и английском</span><span class="en">Memories of friends and colleagues · 2026 · 102 pages · Russian and English</span></p>
+        <p><span class="ru">Сборник собрали подруги, коллежанки, ученицы и соратницы Ольги. В нём вехи жизни, биография, избранные публикации, воспоминания из разных стран и два интервью Ольги: «Холоду» (2021) и «Черте» (2022).</span><span class="en">The book was compiled by Olga’s friends, colleagues, students and allies. It brings together the milestones of her life, a biography, selected publications, memories from many countries and two interviews with Olga, for Kholod (2021) and Cherta (2022).</span></p>
+        <div class="more-links"><a class="btn primary" href="files/shnyrova-memory-book.pdf" target="_blank" rel="noopener"><span class="ru">Открыть PDF</span><span class="en">Open PDF</span> →</a><a class="btn" href="files/shnyrova-memory-book.pdf" download><span class="ru">Скачать · 1,2 МБ</span><span class="en">Download · 1.2 MB</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
 </div>
 <div data-page="works" hidden>
-<section class="section" id="works">
+<section class="section has-crumbs" id="works">
   <div class="wrap">
+    <nav class="crumbs" aria-label="Навигация"><a class="back" href="#top">← <span class="ru">На главную</span><span class="en">Home</span></a><span class="here"><span class="ru">Труды, интервью и лекции</span><span class="en">Works, interviews and lectures</span></span></nav>
     <div class="sec-head reveal">
       <div><div class="eyebrow"><span class="ru">Библиография</span><span class="en">Bibliography</span></div><h2><span class="ru">Труды</span><span class="en">Works</span></h2></div>
       <p><span class="ru">Список собран по открытым источникам на 22 сентября 2026 года. Всего у Ольги было более 90 работ, поэтому перечень будет пополняться. Активна ссылка только там, где она ведёт на саму работу.</span><span class="en">Compiled from open sources as of 22 September 2026. Olga published more than 90 works, so the list will grow. A title is linked only when the link leads to the work itself. Russian titles are given in the original with an English translation in brackets.</span></p>
@@ -527,9 +578,9 @@ footer .wrap{display:grid;gap:10px}
         <p><span class="ru">Если вы знали Ольгу, учились у неё или работали вместе, пришлите текст, фотографии или найденную публикацию. Мы добавим их на сайт. Напишите, можно ли указать ваше имя полностью.</span><span class="en">If you knew Olga, studied with her or worked together, send us a text, photos or a publication we missed. We will add them to the site. Please tell us whether we may use your full name.</span></p>
       </div>
       <div class="mailbox">
-        <span class="ru">Почта для писем</span><span class="en">Write to</span>
+        <span class="lbl"><span class="ru">Почта для писем</span><span class="en">Write to</span></span>
         <a id="mail" class="mail" href="mailto:memory.shnyrova@gmail.com">memory.shnyrova@gmail.com</a>
-        <small><span class="ru">Нажмите на адрес, чтобы написать письмо</span><span class="en">Tap the address to write an email</span></small>
+        <a class="write" href="mailto:memory.shnyrova@gmail.com"><span class="ru">Написать письмо</span><span class="en">Write an email</span> →</a>
       </div>
     </div>
   </div>
@@ -539,7 +590,7 @@ footer .wrap{display:grid;gap:10px}
 <footer>
   <div class="wrap">
     <div><span class="ru">Сайт памяти Ольги Вадимовны Шныровой, 2026</span><span class="en">In memory of Olga Vadimovna Shnyrova, 2026</span></div>
-    <div><span class="ru">Биография: Наталья Гафизова. Воспоминания: коллеги и друзья Ольги. Библиография актуальна на 22.09.2026.</span><span class="en">Biography by Natalia Gafizova. Memories by Olga's colleagues and friends. Bibliography current as of 22.09.2026.</span></div>
+    
   </div>
 </footer>
 
@@ -563,7 +614,8 @@ const TL = [
   {y:'1980', h:{ru:'Истфак ИвГУ и Ленинград',en:'Ivanovo and Leningrad'}, p:{ru:'Окончила исторический факультет Ивановского госуниверситета. Стажировка, затем аспирантура на кафедре новой и новейшей истории ЛГУ, ученица профессора Г. В. Ревуненкова.',en:'Graduated in history from Ivanovo State University. Then an internship and postgraduate study in the Department of Modern History at Leningrad State University under Professor G. V. Revunenkov.'}},
   {y:'1984', h:{ru:'Кандидатская диссертация',en:'Candidate dissertation'}, p:{ru:'«Английский социализм конца XIX — начала XX вв. в современной историографии Великобритании».',en:'“English Socialism of the Late 19th and Early 20th Centuries in Contemporary British Historiography.”'}},
   {y:'1985', h:{ru:'Доцент ИвГУ',en:'Associate professor'}, p:{ru:'Тридцать один год на кафедре новой, новейшей истории и международных отношений. Тысячи студентов и десятки дипломников.',en:'Thirty-one years in the Department of Modern and Contemporary History and International Relations. Thousands of students and dozens of thesis advisees.'}},
-  {y:'1996', key:1, h:{ru:'Ивановский Центр Гендерных Исследований',en:'Ivanovo Center for Gender Studies'}, p:{ru:'Центр создан по её инициативе, в 1997 году официально зарегистрирован. Ольга бессменно руководила им до конца жизни.',en:'Founded on her initiative and officially registered in 1997. Olga led it for the rest of her life.'}},
+  {y:'1996', key:1, h:{ru:'Решение о создании центра',en:'The decision to found the Center'}, p:{ru:'Собрание инициативной группы по предложению Ольги решило создать Ивановский Центр Гендерных Исследований. Ольга бессменно руководила им до конца жизни.',en:'At Olga’s initiative, a founding group met and decided to create the Ivanovo Center for Gender Studies. Olga led it for the rest of her life.'}},
+  {y:'1997', h:{ru:'Официальная регистрация',en:'Official registration'}, p:{ru:'Ивановский Центр Гендерных Исследований официально зарегистрирован.',en:'The Ivanovo Center for Gender Studies is officially registered.'}},
   {y:'2000', h:{ru:'Первая летняя школа',en:'The first summer school'}, p:{ru:'Начало серии из 14 международных летних школ: Плёс, Очаков, Ереван и Севан, Порту, Понте-де-Лима, Коимбра, Реджо-ди-Калабрия, Кишинёв и Маловата.',en:'The start of 14 international summer schools: Plyos, Ochakiv, Yerevan and Sevan, Porto, Ponte de Lima, Coimbra, Reggio Calabria, Chișinău and Malovata.'}},
   {y:'2001', h:{ru:'Оксфорд и ИВИ РАН',en:'Oxford and Moscow'}, p:{ru:'Стажировка в Раскин-колледже. В 2001–2004 годах докторантура Института всеобщей истории РАН.',en:'Visiting scholar at Ruskin College. Doctoral studies at the Institute of World History, Russian Academy of Sciences, 2001–2004.'}},
   {y:'2002', h:{ru:'Её ученики',en:'Her students'}, p:{ru:'С 2002 по 2007 год под её руководством защищены четыре кандидатские диссертации.',en:'Between 2002 and 2007 four candidate dissertations were defended under her supervision.'}, students:1},
@@ -575,6 +627,24 @@ const TL = [
   {y:'2024', key:1, h:{ru:'«Иваново — город (не)невест» и Гаага',en:'Ivanovo book and The Hague'}, p:{ru:'Последняя книга: женская история родного города в пяти маршрутах. В ноябре в Гааге прошла организованная ею международная феминистская конференция по миростроительству «Дайте миру шанс».',en:'Her last book: the women’s history of her home town in five routes. In November she organised the international feminist peacebuilding conference Give Peace a Chance in The Hague.'}, cover:'ivanovo'},
   {y:'2025', last:1, h:{ru:'XIV летняя школа',en:'The 14th summer school'}, p:{ru:'В июле в Понте-де-Лиме прошла школа «Политика страданий». 6 ноября 2025 года Ольги не стало.',en:'In July the school “The Politics of Suffering” took place in Ponte de Lima. Olga died on 6 November 2025.'}},
 ];
+function tlProgress(){
+  const tl = document.getElementById('timeline'); if (!tl || tl.offsetParent === null) return;
+  const dots = [...tl.querySelectorAll('.dot')]; if (!dots.length) return;
+  const r = tl.getBoundingClientRect();
+  const c = d => { const b = d.getBoundingClientRect(); return { x: b.left + b.width / 2 - r.left, y: b.top + b.height / 2 - r.top }; };
+  const pts = dots.map(c), first = pts[0], last = pts[pts.length - 1];
+  const ref = innerHeight * 0.6 - r.top;              /* the reading line: 60% down the screen */
+  tl.style.setProperty('--x', first.x + 'px');
+  tl.style.setProperty('--top', first.y + 'px');
+  tl.style.setProperty('--len', (last.y - first.y) + 'px');
+  tl.style.setProperty('--p', Math.max(0, Math.min(last.y, ref) - first.y) + 'px');
+  dots.forEach((d, i) => d.parentElement.classList.toggle('on', pts[i].y <= ref + 0.5));
+}
+let tlRaf = 0;
+const tlQueue = () => { if (!tlRaf) tlRaf = requestAnimationFrame(() => { tlRaf = 0; tlProgress(); }); };
+addEventListener('scroll', tlQueue, { passive: true });
+addEventListener('resize', tlQueue);
+if ('ResizeObserver' in window) new ResizeObserver(tlQueue).observe(document.documentElement);
 function renderTimeline(){
   $('#timeline').innerHTML = TL.map(e => `
     <div class="ev reveal ${e.key?'key':''} ${e.last?'last':''}">
@@ -584,6 +654,8 @@ function renderTimeline(){
       ${e.cover ? `<figure class="mini"><div class="cover"><img src="img/cover-${e.cover}.jpg" alt="${LANG==='ru'?'Обложка книги':'Book cover'}" loading="lazy" data-photo="cover-${e.cover}"></div></figure>`:''}
       ${e.img ? `<figure><img src="img/${e.img}.jpg" alt="${esc(L(e.cap))}" loading="lazy" data-photo="${e.img}"><figcaption>${esc(L(e.cap))}</figcaption></figure>`:''}
       </div></div>`).join('');
+  $('#timeline').querySelectorAll('img').forEach(i => i.addEventListener('load', tlQueue));
+  tlQueue();
 }
 
 /* ---------------- biography ---------------- */
@@ -616,12 +688,12 @@ $('#lightbox').addEventListener('click', e => { if (e.target.id === 'lightbox') 
 $('#lightbox').addEventListener('keydown', e => { if(e.key==='ArrowRight') $('#lb-next').click(); if(e.key==='ArrowLeft') $('#lb-prev').click(); });
 
 /* ---------------- map ---------------- */
-const KINDS = {school:{ru:'Летние школы',en:'Summer schools'}, science:{ru:'Учёба и наука',en:'Study and research'}, meet:{ru:'Конференции и встречи',en:'Conferences and meetings'}};
+const KINDS = {school:{ru:'Летние школы',en:'Summer schools'}, science:{ru:'Учёба и наука',en:'Study and research'}, meet:{ru:'Семинары, конференции и встречи',en:'Seminars, conferences and meetings'}};
 const PTS = [
   {id:'ivanovo',home:1,k:'science',lon:40.97,lat:57.00,n:{ru:'Иваново',en:'Ivanovo'},w:{ru:'1957–2025',en:'1957–2025'},t:{ru:'Родной город. Университет, кафедра и Ивановский Центр Гендерных Исследований.',en:'Home town. The university, her department and the Ivanovo Center for Gender Studies.'}},
-  {id:'plyos',k:'school',lon:41.51,lat:57.46,n:{ru:'Плёс',en:'Plyos'},w:{ru:'с 1990-х',en:'from the 1990s'},t:{ru:'Семинары по гендерной тематике для преподавателей, учителей, журналистов и сотрудников администраций; летние школы.',en:'Gender seminars for lecturers, teachers, journalists and local officials; summer schools.'},src:'Александра Карасева'},
+  {id:'plyos',k:'school',also:['meet'],lon:41.51,lat:57.46,n:{ru:'Плёс',en:'Plyos'},w:{ru:'с 1990-х',en:'from the 1990s'},t:{ru:'Семинары по гендерной тематике для преподавателей, учителей, журналистов и сотрудников администраций; летние школы.',en:'Gender seminars for lecturers, teachers, journalists and local officials; summer schools.'},src:'Александра Карасева'},
   {id:'ochakiv',k:'school',lon:31.55,lat:46.61,n:{ru:'Очаков',en:'Ochakiv'},w:{ru:'летняя школа',en:'summer school'},t:{ru:'Одна из международных летних школ, Украина.',en:'One of the international summer schools, Ukraine.'}},
-  {id:'yerevan',k:'school',lon:44.51,lat:40.18,n:{ru:'Ереван и Севан',en:'Yerevan and Sevan'},w:{ru:'летняя школа',en:'summer school'},t:{ru:'Летняя школа в Армении; позже встречи с коллегами в эмиграции.',en:'A summer school in Armenia; later, meetings with colleagues in exile.'},src:'Саида Сиражудинова, Ирина Мальцева'},
+  {id:'yerevan',k:'school',also:['meet'],lon:44.51,lat:40.18,n:{ru:'Ереван и Севан',en:'Yerevan and Sevan'},w:{ru:'летняя школа',en:'summer school'},t:{ru:'Летняя школа в Армении; позже встречи с коллегами в эмиграции.',en:'A summer school in Armenia; later, meetings with colleagues in exile.'},src:'Саида Сиражудинова, Ирина Мальцева'},
   {id:'porto',k:'school',lon:-8.61,lat:41.15,n:{ru:'Порту',en:'Porto'},w:'2014',t:{ru:'Летняя школа для преподавателей российских университетов («гендер и война») с Университетом Фернандо Пессоа.',en:'Summer school for Russian university lecturers (gender and war) with Fernando Pessoa University.'},src:'Николай Вуков, Ингрид Шарп'},
   {id:'ponte',k:'school',lon:-8.58,lat:41.77,n:{ru:'Понте-де-Лима',en:'Ponte de Lima'},w:{ru:'2018, июль 2025',en:'2018, July 2025'},t:{ru:'Школа «Современный мир сквозь призму гендера» и последняя, XIV школа «Политика страданий».',en:'“The Contemporary World through the Lens of Gender” and the 14th school, “The Politics of Suffering”, the last one.'},src:'Джулия Гаррайо, Антон Хвостов'},
   {id:'coimbra',k:'school',lon:-8.43,lat:40.21,n:{ru:'Коимбра',en:'Coimbra'},w:'2019, 2024',t:{ru:'Две школы с Центром социальных исследований Университета Коимбры: об антигендерном повороте и о памяти войны.',en:'Two schools with the Centre for Social Studies, University of Coimbra: on the anti-gender turn and on war memory.'},src:'Джулия Гаррайо'},
@@ -629,7 +701,9 @@ const PTS = [
   {id:'chisinau',k:'school',lon:28.86,lat:47.01,n:{ru:'Кишинёв и Маловата',en:'Chișinău and Malovata'},w:{ru:'июль 2022',en:'July 2022'},t:{ru:'Летняя школа в Молдове.',en:'Summer school in Moldova.'},src:'Антон Хвостов, Кателяйне Херинга'},
   {id:'albania',k:'school',lon:19.82,lat:41.33,n:{ru:'Албания',en:'Albania'},w:{ru:'июль 2016',en:'July 2016'},t:{ru:'«Работа с травмой с гендерной перспективы» для преподавателей российских университетов.',en:'“Working with trauma from a gender perspective” for Russian university lecturers.'},src:'Ингрид Шарп'},
   {id:'bulgaria',k:'school',lon:25.48,lat:42.73,n:{ru:'Болгария',en:'Bulgaria'},w:{ru:'июль 2015',en:'July 2015'},t:{ru:'«Коммеморация конфликтов» для преподавателей российских университетов.',en:'“Commemorating conflicts” for Russian university lecturers.'},src:'Ингрид Шарп'},
-  {id:'nevinnomyssk',k:'school',lon:41.94,lat:44.63,n:{ru:'Невинномысск',en:'Nevinnomyssk'},w:{ru:'школа',en:'school'},t:{ru:'Школа, где встретились петербургские художницы и правозащитницы Северного Кавказа.',en:'A school bringing together artists from St Petersburg and human rights defenders from the North Caucasus.'},src:'Елена Безрукова'},
+  {id:'nevinnomyssk',k:'meet',lon:41.94,lat:44.63,n:{ru:'Невинномысск',en:'Nevinnomyssk'},w:{ru:'семинар',en:'seminar'},t:{ru:'Семинар, где встретились петербургские художницы и правозащитницы Северного Кавказа.',en:'A seminar bringing together artists from St Petersburg and human rights defenders from the North Caucasus.'},src:'Елена Безрукова'},
+  {id:'shuya',k:'meet',lon:41.39,lat:56.85,n:{ru:'Шуя',en:'Shuya'},w:{ru:'Ивановская область',en:'Ivanovo region'},t:{ru:'Встречи и семинары в Ивановской области.',en:'Meetings and seminars in the Ivanovo region.'}},
+  {id:'semigorye',k:'meet',lon:41.82,lat:57.38,n:{ru:'Семигорье',en:'Semigorye'},w:{ru:'Ивановская область',en:'Ivanovo region'},t:{ru:'Встречи и семинары в Ивановской области.',en:'Meetings and seminars in the Ivanovo region.'}},
   {id:'leningrad',k:'science',lon:30.31,lat:59.94,n:{ru:'Ленинград',en:'Leningrad'},w:'1980–1984',t:{ru:'Аспирантура ЛГУ. Позже Ольга возила сюда студентов ИвГУ на летнюю музейную практику.',en:'Postgraduate study at Leningrad State University; later, summer museum internships with Ivanovo students.'},src:'Александра Карасева'},
   {id:'moscow',k:'science',lon:37.62,lat:55.76,n:{ru:'Москва',en:'Moscow'},w:'2001–2004',t:{ru:'Докторантура Института всеобщей истории РАН.',en:'Doctoral studies at the Institute of World History.'}},
   {id:'oxford',k:'science',lon:-1.26,lat:51.75,n:{ru:'Оксфорд',en:'Oxford'},w:'2001, 2014',t:{ru:'Стажировка в Раскин-колледже; семинары для российских аспирантов и учёных.',en:'Visiting scholar at Ruskin College; seminars for Russian doctoral students and scholars.'},src:'Ингрид Шарп'},
@@ -646,7 +720,7 @@ const ON = {school:true,science:true,meet:true};
 let mapSel = null, mapSvg = null;
 function renderMapUI(){
   $('#legend').innerHTML = Object.entries(KINDS).map(([k,v]) => `<button class="chip" type="button" data-kind="${k}" aria-pressed="${ON[k]}"><i style="background:var(${k==='school'?'--violet':k==='science'?'--green':'--red'})"></i>${esc(L(v))}</button>`).join('');
-  $('#places').innerHTML = Object.entries(KINDS).map(([k,v]) => `<div class="g-${k}" ${ON[k]?'':'hidden'}><h3>${esc(L(v))}</h3><ul>${PTS.filter(p=>p.k===k).map(p=>`<li><button type="button" data-pt="${p.id}" class="${mapSel===p.id?'on':''}">${esc(L(p.n))}</button></li>`).join('')}</ul></div>`).join('');
+  $('#places').innerHTML = Object.entries(KINDS).map(([k,v]) => `<div class="g-${k}" ${ON[k]?'':'hidden'}><h3>${esc(L(v))}</h3><ul>${PTS.filter(p=>p.k===k || (p.also||[]).includes(k)).map(p=>`<li><button type="button" data-pt="${p.id}" class="${mapSel===p.id?'on':''}">${esc(L(p.n))}</button></li>`).join('')}</ul></div>`).join('');
   showCard(mapSel || 'ivanovo');
 }
 function showCard(id){
@@ -665,7 +739,8 @@ document.addEventListener('click', e => {
   const b = e.target.closest('[data-pt]'); if (b) selectPt(b.dataset.pt);
   const c = e.target.closest('[data-kind]'); if (c){ ON[c.dataset.kind] = !ON[c.dataset.kind]; renderMapUI(); applyKinds(); }
 });
-function applyKinds(){ if(!mapSvg) return; mapSvg.selectAll('.pt,.arc').attr('display', d => ON[d.k] || d.home ? null : 'none'); }
+const shown = d => d.home || ON[d.k] || (d.also||[]).some(k => ON[k]);
+function applyKinds(){ if(!mapSvg) return; mapSvg.selectAll('.pt,.arc').attr('display', d => shown(d) ? null : 'none'); }
 async function drawMap(){
   if (!window.d3) return;
   let geo; try { geo = await (await fetch('europe.json')).json(); } catch(e){ return; }
@@ -710,6 +785,7 @@ function renderMemoirs(){
       <button class="btn" type="button" data-mem="${i}">${LANG==='ru'?'Читать':'Read'}</button></div>
     </article>`;
   $('#mem-grid').innerHTML = DATA.memoirs.map(card).join('');
+  document.querySelectorAll('.mc').forEach(e => e.textContent = DATA.memoirs.length);
   $('#mem-preview').innerHTML = [0,5,13].map(i => card(DATA.memoirs[i], i)).join('');
 }
 let memIndex = 0;
@@ -739,8 +815,8 @@ function renderShelf(){
   const sb = b(39), iv = b(43), st = b(101);
   $('#shelf').innerHTML = $('#shelf-home').innerHTML = `
    <a class="book" href="${sb.url}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="cover"><img src="img/cover-suffrage.jpg" alt="Обложка книги «Суфражизм в истории и культуре Великобритании»" loading="lazy"></div><h3>${LANG==='ru'?esc(sb.title):'Suffragism in the History and Culture of Great Britain'}</h3><p>${LANG==='ru'?'Монография · Изд-во Ивана Лимбаха, 2019':'Monograph (in Russian) · Ivan Limbakh, 2019'}</p></a>
-   <a class="book" href="${iv.url}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="cover"><img src="img/cover-ivanovo.jpg" alt="Обложка книги «Иваново. Город (не)невест»" loading="lazy"></div><h3>${LANG==='ru'?'Иваново. Город (не)невест':'Ivanovo, a City of (Not) Brides'}</h3><p>${LANG==='ru'?'Женская история города в пяти маршрутах · соавторка и редакторка, 2024':'The women’s history of Ivanovo in five routes · co-author and editor, 2024'}</p></a>
-   <a class="book" href="${st.url}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="cover"><img src="img/cover-stites.jpg" alt="Обложка книги Ричарда Стайтса «Женское освободительное движение в России»" loading="lazy"></div><h3>${LANG==='ru'?'Ричард Стайтс. Женское освободительное движение в России':'Richard Stites. The Women’s Liberation Movement in Russia'}</h3><p>${LANG==='ru'?'Перевод и научная редактура · РОССПЭН, 2004':'Russian translation and editing · ROSSPEN, 2004'}</p></a>`;
+   <div class="book"><a class="book-link" href="${iv.url}" target="_blank" rel="noopener"><div class="cover"><img src="img/cover-ivanovo.jpg" alt="Обложка книги «Иваново. Город (не)невест»" loading="lazy"></div><h3>${LANG==='ru'?'Иваново. Город (не)невест':'Ivanovo, a City of (Not) Brides'}</h3><p>${LANG==='ru'?'Женская история города в пяти маршрутах · соавторка и редакторка, 2024':'The women’s history of Ivanovo in five routes · co-author and editor, 2024'}</p></a><div class="book-actions"><a class="btn primary" href="files/ivanovo-gorod-ne-nevest.pdf" target="_blank" rel="noopener">${LANG==='ru'?'Открыть PDF':'Open PDF'}</a><a class="btn" href="files/ivanovo-gorod-ne-nevest.pdf" download>${LANG==='ru'?'Скачать · 56 МБ':'Download · 56 MB'}</a></div></div>
+   <div class="book"><div class="cover"><img src="img/cover-stites.jpg" alt="Обложка книги Ричарда Стайтса «Женское освободительное движение в России»" loading="lazy"></div><h3>${LANG==='ru'?'Ричард Стайтс. Женское освободительное движение в России':'Richard Stites. The Women’s Liberation Movement in Russia'}</h3><p>${LANG==='ru'?'Перевод и научная редактура · РОССПЭН, 2004':'Russian translation and editing · ROSSPEN, 2004'}</p></div>`;
   $('#feat').innerHTML = DATA.pubs.filter(p=>p.featured && p.type!=='book' && p.type!=='edit').map(p => `<a href="${p.url}" target="_blank" rel="noopener"><div class="y">${p.year}</div><div class="t">${esc(p.title)}</div><div class="s">${esc(p.src.split(' — DOI')[0])}</div></a>`).join('');
 }
 function renderFilters(){
@@ -763,7 +839,7 @@ function renderBib(){
       <div class="au">${esc(p.authors)}</div>
       <div class="ti">${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${esc(p.title)}</a>` : esc(p.title)}</div>${LANG==='en' && p.title_en ? `<div class="tr">[${esc(p.title_en)}]</div>`:''}
       <div class="so">${esc(p.src)}</div>${p.note?`<div class="nt">${esc(p.note)}</div>`:''}
-      <div class="badges">${p.full?`<span class="badge">${LANG==='ru'?'Полный текст':'Full text'}</span>`:''}${p.url && /doi\.org/.test(p.url)?'<span class="badge l">DOI</span>':''}${p.lang==='en'?'<span class="badge l">EN</span>':''}</div>
+      <div class="badges">${p.pdf?`<a class="badge" href="${p.pdf}" target="_blank" rel="noopener">PDF</a>`:''}${p.full?`<span class="badge">${LANG==='ru'?'Полный текст':'Full text'}</span>`:''}${p.url && /doi\.org/.test(p.url)?'<span class="badge l">DOI</span>':''}${p.lang==='en'?'<span class="badge l">EN</span>':''}</div>
     </div><button class="cite" type="button" data-cite="${p.n}">${LANG==='ru'?'Цитировать':'Cite'}</button></li>`).join('')}</ol></details>`).join('');
   document.querySelectorAll('#biblist details').forEach(d => d.addEventListener('toggle', () => { if (!active){ d.open ? OPENDEC.add(+d.dataset.dec) : OPENDEC.delete(+d.dataset.dec); } }));
 }
@@ -783,7 +859,8 @@ function copy(text, btn, okText){
 
 /* ---------------- voice ---------------- */
 function renderVoice(){
-  const li = (x, kind) => `<li><a href="${x.url}" target="_blank" rel="noopener">${esc(LANG==='en' && x.title_en && /profile/.test(x.type||'') ? x.title_en : x.title)}</a>${LANG==='en' && x.title_en && !/profile/.test(x.type||'') ? `<small class="tr">[${esc(x.title_en)}]</small>`:''}<small>${esc(x.src)}</small>${kind?`<span class="kind">${kind}</span>`:''}</li>`;
+  const ttl = (x) => esc(LANG==='en' && x.title_en && /profile/.test(x.type||'') ? x.title_en : x.title);
+  const li = (x, kind) => `<li>${x.url ? `<a href="${x.url}" target="_blank" rel="noopener">${ttl(x)}</a>` : `<span class="nolink">${ttl(x)}</span>`}${LANG==='en' && x.title_en && !/profile/.test(x.type||'') ? `<small class="tr">[${esc(x.title_en)}]</small>`:''}<small>${esc(x.src)}</small>${kind?`<span class="kind">${kind}</span>`:''}</li>`;
   $('#lectures').innerHTML = DATA.lectures.map(x=>li(x, 'Arzamas')).join('').replace(/Arzamas<\/span><\/li>/, 'Arzamas</span></li>');
   $('#lectures').innerHTML = DATA.lectures.map(x=>li(x, /arzamas|podcast/i.test(x.url+x.src)?'Arzamas':(LANG==='ru'?'доклад':'talk'))).join('');
   $('#interviews').innerHTML = DATA.interviews.map(x=>li(x, x.year)).join('');
@@ -815,12 +892,12 @@ $('#lang-ru').onclick = () => setLang('ru'); $('#lang-en').onclick = () => setLa
 function renderAll(){ if (typeof renderPager==='function' && document.getElementById('pager').innerHTML) renderPager(); renderTimeline(); renderBio(); renderRail(); renderMemoirs(); renderMapUI(); renderShelf(); renderFilters(); renderBib(); renderVoice(); }
 document.documentElement.lang = LANG;
 $('#lang-ru').setAttribute('aria-pressed', LANG==='ru'); $('#lang-en').setAttribute('aria-pressed', LANG==='en');
-const PAGES = {bio:'bio', memories:'memories', works:'works', voice:'works'};
+const PAGES = {bio:'bio', memories:'memories', book:'memories', works:'works', voice:'works'};
 let CUR = 'home';
 const PAGER = [
-  ['life', {ru:'Жизнь',en:'Life'}, {ru:'Вехи, карта школ, фотографии',en:'Milestones, map, photographs'}, 'home'],
+  ['top', {ru:'Главная',en:'Home'}, {ru:'Вехи, карта, фотографии, книги',en:'Milestones, map, photographs, books'}, 'home'],
   ['bio', {ru:'Биография',en:'Biography'}, {ru:'Текст Натальи Гафизовой',en:'By Natalia Gafizova'}, 'bio'],
-  ['memories', {ru:'Воспоминания',en:'Memories'}, {ru:'17 голосов',en:'17 voices'}, 'memories'],
+  ['memories', {ru:'Воспоминания',en:'Memories'}, {ru:'18 голосов и Книга памяти',en:'18 voices and the memory book'}, 'memories'],
   ['works', {ru:'Труды',en:'Works'}, {ru:'Библиография, интервью, лекции',en:'Bibliography, interviews, lectures'}, 'works'],
 ];
 const TITLES = {home:{ru:'Ольга Шнырова (1957–2025). Сайт памяти',en:'Olga Shnyrova (1957–2025). In memoriam'}, bio:{ru:'Биография. Ольга Шнырова',en:'Biography. Olga Shnyrova'}, memories:{ru:'Воспоминания. Ольга Шнырова',en:'Memories. Olga Shnyrova'}, works:{ru:'Труды. Ольга Шнырова',en:'Works. Olga Shnyrova'}};
@@ -835,7 +912,7 @@ function route(){
   const target = h && document.getElementById(h);
   if (h === page || (!target && changed)) scrollTo(0,0);
   else if (target) target.scrollIntoView();
-  dispatchEvent(new Event('scroll'));
+  dispatchEvent(new Event('scroll')); tlQueue();
 }
 addEventListener('hashchange', route);
 renderAll(); drawMap(); route();
